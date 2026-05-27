@@ -11,20 +11,24 @@
 
 
 <script>
+/* 
+   Targets the first portfolio card's delayed link reveal.
+   Updated from duplicate ID "block-load" to unique ID "block-load-1".
+*/
 document.addEventListener('DOMContentLoaded', function() {
-    const fadeDiv = document.getElementById('block-load'); //Parent div ID
+    const fadeDiv = document.getElementById('block-load-1');
+    if (!fadeDiv) return; // Safety check
+
     const links = fadeDiv.querySelectorAll('.hide-link');
 
-    // Start the fade-in effect
     setTimeout(() => {
         fadeDiv.classList.add('fade-in');
-        // Wait for the fade-in transition to complete
         setTimeout(() => {
             links.forEach(link => {
                 link.classList.add('show-link');
             });
-        }, 6055); // Match css fade delay of 'block-load' parent
-    }, 0); // Small delay to ensure the transition is applied after the page load
+        }, 6055);
+    }, 0);
 });	
 	
 document.addEventListener('DOMContentLoaded', function() {
@@ -339,22 +343,23 @@ from {
 			<div class="row" >
 				<div class="col-md-4" id="row01">
 					<div class="block-1a" id="block-1a">
-						<div class="block-load" id="block-load"><nav><a class="hide-link" href="index02.html"></nav>
-							<img src="images/port/CK-software.svg" style="width: 100%;" />
-							<h1>KC Software</h1>
-							<ul class="cust-list">
-								<li>logo design</li>
-								<li>Print design</li>
-								<li>Web design & development</li>
-								<li>WordPress cms integration</li>
-							</ul>
-							<div class="sticky-but">View Project</div>
+						<div class="block-load" id="block-load-1">
+							<a class="hide-link" href="index02.html">
+								<img src="images/port/CK-software.svg" style="width: 100%;" />
+								<h1>KC Software</h1>
+								<ul class="cust-list">
+									<li>logo design</li>
+									<li>Print design</li>
+									<li>Web design & development</li>
+									<li>WordPress cms integration</li>
+								</ul>
+								<div class="sticky-but">View Project</div>
 							</a>
 						</div>
 					</div>
 					<div class="block-4a" id="block-4a">
-						<div class="block-load" id="block-load">
-						<img src="images/port/foundation.png" style="width: 100%;" />
+						<div class="block-load" id="block-load-2">
+							<img src="images/port/foundation.png" style="width: 100%;" />
 							<h1>Foundation Real Estate CRM</h1>
 							<ul class="cust-list">
 								<li>Web design & development</li>
@@ -366,7 +371,7 @@ from {
 				</div>
 				<div class="col-md-4" id="row02">
 					<div class="block-2a" id="block-2a">
-						<div class="block-load" id="block-load">
+						<div class="block-load" id="block-load-3">
 							<img src="images/port/thermal-systems.png" style="width: 100%;" />
 							<h1>Thermal Systems</h1>
 							<ul class="cust-list">
@@ -377,20 +382,20 @@ from {
 						</div>
 					</div>
 					<div class="block-5a" id="block-5a">
-						<div class="block-load" id="block-load">
+						<div class="block-load" id="block-load-4">
 							<img src="images/port/mopspot.png" style="width: 100%;" />
-								<h1>MopSpot</h1>
-								<ul class="cust-list">
-									<li>Funnel & UI / UX</li>
-									<li>Icon design</li>
-								</ul>
+							<h1>MopSpot</h1>
+							<ul class="cust-list">
+								<li>Funnel & UI / UX</li>
+								<li>Icon design</li>
+							</ul>
 							<div class="sticky-but">View Project</div>
 						</div>
 					</div>					
 				</div>
 				<div class="col-md-4" id="row03">
 					<div class="block-3a" id="block-3a">
-						<div class="block-load" id="block-load">
+						<div class="block-load" id="block-load-5">
 							<img src="images/port/valt.png" style="width: 100%;" />
 							<h1>Valt Real Estate Exchange</h1>
 							<ul class="cust-list">
@@ -402,8 +407,8 @@ from {
 						</div>
 					</div>
 					<div class="block-6a" id="block-6a">
-						<div class="block-load" id="block-load">
-					<img src="images/port/valet.png" style="width: 100%;" />
+						<div class="block-load" id="block-load-6">
+							<img src="images/port/valet.png" style="width: 100%;" />
 							<h1>Valet Financial</h1>
 							<ul class="cust-list">
 								<li>Web design & development</li>
@@ -419,28 +424,15 @@ from {
 			</div>
 		</div>
 	<div style="height: 1000px;"></div>
-	
-	<script src="js/lightbox-plus-jquery.min.js"></script>	
-	<script src="js/jquery-ui.js"></script>	
-	    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const allLinks = document.querySelectorAll('a');
-            allLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
 
-                    // Fade out the entire body
-                    document.body.classList.add('fade-out-page');
+	<!-- 
+		Removed dead references that were causing 404 errors:
+		- js/lightbox-plus-jquery.min.js (file does not exist)
+		- js/jquery-ui.js (file does not exist)
 
-                    // Wait for the fade-out to complete before redirecting
-                    setTimeout(() => {
-                        window.location.href = this.href;
-                    }, 1200); // Match this to the duration of the CSS transition
-                });
-            });
-        });
-    </script>
+		Removed the aggressive script that was calling event.preventDefault() 
+		on every <a> tag on the page. This was blocking normal link behavior.
+	-->
 
 </body>
-</head>
 </html>
