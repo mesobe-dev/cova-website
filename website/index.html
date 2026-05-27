@@ -159,11 +159,10 @@ __-' { |          \
 	}	
 	
 	.block-load {
+		/*background: rgb(0, 0, 0, 1);*/
+		
 		height: auto;
 		margin: 10px;
-		opacity: 0;
-		animation: fadeIn ease 1700ms forwards;
-		animation-delay: 2000ms; /* Base delay for normal blocks - adjust as needed */
 	}
 	
 	.block-load h1 {
@@ -233,24 +232,50 @@ body.fade-out {
   animation: fadeInUp 1s ease-in-out 10ms forwards;
 }
 
-/* 
-   Animation moved to .block-load class so all future blocks 
-   automatically get the same fade behavior + height/margin.
-   Only the first card has extra JS logic for the delayed link reveal.
-*/
 #block-1a {
 	display: block;
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+	animation-delay: 2800ms;
+    
 }
 	
-#block-2a { }
+#block-2a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 3265ms;
+}
 	
-#block-3a { }
+#block-3a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 3730ms;
+}
 	
-#block-4a { }
+#block-4a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+	animation-delay: 4195ms;
+    
+}
 	
-#block-5a { }
+#block-5a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 4660ms;
+}
 	
-#block-6a { }
+#block-6a {
+    opacity: 0;
+    animation: fadeIn ease 1800ms forwards;
+    animation-delay: 5125ms;
+}
+	
+#block-load-1 {
+    opacity: 0;
+    animation: fadeIn ease 1700ms forwards;
+    animation-delay: 6055ms;
+}
 		
 
 @keyframes fadeIn{
