@@ -1,0 +1,558 @@
+#nuera-blog {
+  .related-blog-posts {
+    background: white;
+  }
+
+  article {
+    // blog post table styles
+    table {
+      th {
+        font-family: $brand-font-bold;
+      }
+    }
+  }
+}
+
+.blog-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+// blog summary page
+// blog header
+
+.blog-headers {
+    
+    @include media("<=small") {
+      margin-top: 30px;
+    
+  }
+}
+
+header.blog-header {
+  background: white;
+  text-align: center;
+  color: $grey;
+  padding: 30px 0 0;
+
+  .blog-icon {
+    fill: $grey-medium;
+  }
+
+  .subhead,
+  h1 {
+    margin: 28px 0;
+  }
+
+  span {
+    padding: 0 10px;
+  }
+}
+
+.blog {
+  margin: 0 auto;
+  max-width: 1336px;
+  width: 100%;
+  padding: 2rem 0 2.5rem;
+  @include media("<medium") {
+    flex-flow: column wrap;
+    padding: 0 0 2rem;
+  }
+
+  .blog-categories {
+    width: 250px;
+    @include media("<=medium") {
+      padding: 1rem;
+      width: 100%;
+      order: -1;
+      display: block;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      @include media("<=medium") {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      li {
+        padding: 0;
+        list-style: none;
+        @include media("<=medium") {
+          width: calc(100%/3);
+        }
+        @include media("<=small") {
+          width: calc(100%);
+        }
+
+        &:before {
+          // remove bullet
+          display: none;
+        }
+
+        a {
+          display: block;
+          font-size: 0.9rem;
+          font-family: $brand-font-bold;
+          padding: 0.5em 1em 0.5em 2em;
+          color: lighten($grey, 5%);
+          border-bottom: 1px solid $grey-light;
+          transition: all 0.2s ease;
+
+          &:hover {
+            color: $grey;
+            background: $green-lighter;
+            transition: all 0.1s ease;
+            border-bottom: 1px solid $green;
+          }
+
+          &.current {
+            color: white;
+            background: $green;
+          }
+        }
+      }
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding-left: 28px;
+      color: $green;
+    }
+  }
+
+  .blog-post-list {
+    padding: 0 1rem;
+    display: flex;
+    position: relative;
+    flex-flow: row wrap;
+    // most recent blog post - pull it first and style it nicely
+    .blog-post:nth-child(2) {
+      background: $aqua;
+      height: 450px;
+      width: calc(100% - 290px);
+      order: -1;
+      margin-right: 0;
+      padding: 0;
+      box-shadow: none;
+      position: relative;
+      border: 3px solid $green;
+      overflow: hidden;
+
+      h2 {
+        font-size: 2em;
+        line-height: 1.1em;
+        color: white;
+        transition: all 0.2s ease;
+      }
+
+      .blog-image {
+        position: absolute;
+        opacity: 0.3;
+        transform: scale(1);
+        transition: all 0.4s cubic-bezier(.87,-.41,.19,1.44);
+      }
+
+      .blog-post-text {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60%;
+        height: 100%;
+        padding: 60px 40px 20px;
+        transition: all 0.2s ease-in-out;
+        z-index: 1;
+
+        &:before {
+          content: '';
+          z-index: -1;
+          background: white;
+          height: 100%;
+          position: absolute;
+          width: 0;
+          right: 0;
+          top: 0;
+          transition: all 0.3s ease;
+        }
+      }
+
+      .blog-category,
+      .blog-date {
+        color: white;
+      }
+
+      .blog-post-description {
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        @include media("<=medium") {
+          display: none;
+        }
+      }
+      //on hover of most recent blog post
+      &:hover {
+        box-shadow: none;
+
+        h2 {
+          color: $grey;
+          //font-size: 2em;
+          transition: 0.3s ease;
+        }
+
+        .blog-image {
+          transform: scale(1.1);
+          opacity: 1;
+          transition: all 0.2s ease-in-out;
+        }
+
+        .blog-post-text {
+          //background: white;
+          width: 60%;
+          transition: all 0.2s ease-in-out;
+
+          &:before {
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+          }
+        }
+
+        .blog-post-description {
+          opacity: 1;
+          transition: all 0.3s ease-in-out;
+        }
+
+        .blog-date {
+          color: $grey;
+        }
+
+        .blog-category {
+          color: $green;
+        }
+      }
+      @include media("<=medium") {
+        order: 0;
+        width: 100%;
+
+        .blog-post-description {
+          display: none;
+        }
+      }
+      @include media("<=small") {
+        height: auto;
+
+        h2 {
+          font-size: 1.2em;
+        }
+
+        .blog-post-text {
+          width: 100%;
+          position: relative;
+        }
+
+        &:hover {
+          background: $aqua;
+
+          .blog-post-text {
+            width: 100%;
+
+            &:before {
+              display: none;
+            }
+          }
+
+          h2 {
+            color: white;
+          }
+
+          .blog-image {
+            transform: scale(1);
+            opacity: 0.3;
+          }
+
+          .blog-date {
+            color: white;
+          }
+
+          .blog-category {
+            color: white;
+          }
+        }
+      }
+    }
+    // rest of the blog posts
+    .blog-post {
+      width: calc(100%/3 - 40px);
+      background: white;
+      margin: 20px;
+      box-shadow: rgba($grey, 0.2) 1px 1px 47px -10px;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background: rgba($green, 0.2);
+        box-shadow: rgba($grey, 0.2) 4px 4px 24px -7px;
+        transition: all 0.3s ease-in-out;
+
+        .blog-image {
+          opacity: 0.3;
+          transition: all 0.3s ease-in-out;
+        }
+        @include media("<=small") {
+          background: white;
+
+          .blog-image {
+            opacity: 1;
+          }
+        }
+      }
+      @include media("<=medium") {
+        width: 100%;
+        margin: 15px 0;
+      }
+    }
+
+    .blog-image-container {
+      background: $aqua;
+      height: 250px;
+      overflow: hidden;
+      @include media("<large") {
+        height: 200px;
+      }
+      @include media("<=small") {
+        background: white;
+        height: auto;
+      }
+    }
+
+    .blog-image {
+      width: 100%;
+      max-width: 100%;
+      opacity: 1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .blog-post-text {
+      padding: 30px 40px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-family: $brand-font-bold;
+      line-height: 1.25em;
+      margin: 0.5em 0 0.4em;
+      text-align: left;
+      color: $grey;
+
+      a {
+        color: $grey;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: $green;
+          transition: all 0.3s ease;
+        }
+      }
+      @include media("<=small") {
+        font-size: 1em;
+      }
+    }
+
+    .blog-date {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: darken($grey-light,20%);
+      padding-right: 12px;
+      display: inline-block;
+      margin: 0;
+    }
+
+    .blog-category {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-family: $brand-font-bold;
+      color: $green;
+      display: inline-block;
+      margin: 0;
+    }
+  }
+}
+
+.blog-pager {
+  margin: 0 auto;
+  max-width: 1336px;
+  text-align: center;
+  display: block;
+  padding: 1rem 0 4rem;
+
+  a.pager-link,
+  span {
+    padding: 0.75rem 1rem;
+    font-family: $brand-font-bold;
+  }
+
+  a.pager-link {
+    background: white;
+    color: $grey;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba($green, 0.3);
+      transition: all 0.2s ease;
+    }
+    @include media("<=small") {
+      display: inline-block;
+    }
+  }
+
+  span > span {
+    color: white;
+    background: $green;
+  }
+}
+// blog posts pulled in dynamically
+
+#home-blog {
+  .blog-image-container {
+    height: 280px;
+    overflow: hidden;
+    @include media("<=medium") {
+      height: 170px;
+    }
+    @include media("<=small") {
+      background: white;
+      height: auto;
+    }
+  }
+
+  .blog-image {
+    width: 100%;
+    max-width: 100%;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.blog-post {
+  background: $grey-lightest;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($green,0.2);
+    transition: all 0.2s ease;
+
+    .blog-image {
+      opacity: 0.7;
+      transition: all 0.3s ease-in;
+    }
+  }
+
+  .blog-post-text {
+    padding: 0 30px 10px;
+
+    span {
+      color: inherit;
+    }
+  }
+
+  .blog-details {
+    font-size: 12px;
+  }
+}
+
+.blog-post-callout {
+  background: $grey-lightest;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 30px 0;
+  @include media("<=small") {
+    flex-direction: column;
+  }
+
+  &:hover {
+    background: rgba($green,0.2);
+    transition: all 0.2s ease;
+
+
+  }
+
+  .blog-image-container {
+    background: $aqua;
+    width: 250px;
+    max-height: 150px;
+    overflow: hidden;
+    @include media("<=small") {
+      background: white;
+      height: auto;
+      max-height: auto;
+      width: 100%;
+    }
+  }
+
+  .blog-image {
+    width: 100%;
+    max-width: 100%;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .blog-post-text {
+    padding: 20px;
+
+    .blog-title {
+      font-size: 20px;
+      line-height: 1.3;
+      padding: 0 0 8px 0;
+      margin: 0 0 8px 0;
+      border-bottom: 1px solid #DDDDDD;
+    }
+    span {
+      color: inherit;
+    }
+  }
+
+  .blog-details {
+    font-size: 13px;
+    padding-top: 8px;
+    text-transform: uppercase;
+  }
+}
+
+// fixes for Blog Designer Pack plugin
+
+.cd-main-content {
+		background: $white;
+	}
+
+.bdp-post-image-bg img {
+    width: 100%;
+}
+
+.bdp-post-grid-content {
+    text-align: center;
+    width: 100%;
+}
+
+.bdp-post-categories {
+    margin: 0 auto 15px;
+}
+
+.bdp-post-date {
+    margin: 0 auto 15px !important;
+}
+
+.bdp-post-title {
+    width: 100%;
+	font-size: 1.5em;
+}
+
+.bdp-readmorebtn {
+    color: $nude-blue !important;
+    border: 2px solid $nude-blue !important;
+	&:hover, &:focus {
+		background: $nude-blue !important;
+		color: $white !important;
+	}
+}

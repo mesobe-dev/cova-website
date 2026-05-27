@@ -1,0 +1,287 @@
+.landing-page {
+  // grey bar under main top-bar for landing pages
+  .lower-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0 20px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  section {
+    padding: 36px 0;
+
+    a:not(.btn) {
+      color: $green;
+      font-family: $brand-font-bold;
+      border-bottom: 3px solid $grey-light;
+      -webkit-transition: all 0.2s ease;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: $blue;
+        border-bottom: 3px solid $green-lighter;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+      }
+    }
+  }
+
+  h1 {
+    color: $green;
+    font-size: 2.5rem;
+    line-height: 1.2em;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+    @include media("<large") {
+      font-size: 2rem;
+      line-height: 1.25em;
+    }
+    @include media("<=small") {
+      font-size: 1.5rem;
+      line-height: 1.75rem;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    @include media("<=small") {
+      font-size: 1.2rem;
+    }
+  }
+
+  .subhead {
+    font-size: 1.5rem;
+    @include media("<small") {
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+  }
+
+  .logo-container {
+    width: 165px;
+    padding: 1em;
+  }
+
+  .container-coverages {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    ///flex-flow: row wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .coverage {
+    color: $grey-dark;
+    background-color: white;
+    margin: 0 1em 1em 0;
+    width: calc((100% / 3) - 1em);
+    @include media("<medium") {
+      width: 100%;
+      margin: 0 0 1em;
+    }
+    @include media("<small") {
+      width: 100%;
+    }
+  }
+
+  .about-us {
+    background: white;
+  }
+
+  .nuera-policies {
+    .nuera-includes {
+      color: $green;
+      font-weight: bold;
+      font-size: 1.2rem;
+      line-height: 1.2em;
+    }
+
+    h1 {
+      color: $grey-dark;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .coverage-sm {
+      padding: 20px 30px;
+      @include media("<=small") {
+        padding: 0;
+      }
+    }
+
+    .icon {
+      max-width: 76px;
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+
+  .center-buttons {
+    text-align: center;
+  }
+
+  .home-partners {
+    .svg-white a {
+      border-bottom: 0;
+
+      &:hover {
+        border-bottom: 0;
+      }
+    }
+
+    h4 {
+      max-width: 1000px;
+      @include media("<=small") {
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+      }
+    }
+
+    .grid_sm-1-spaceAround {
+      .svg-white {
+        .tooltip-top:after,
+        .tooltip:after,
+        [data-tooltip]:after {
+          @include media("<small") {
+            margin-left: -125px;
+          }
+        }
+
+        &:first-child {
+          /* Top (default) */
+          .tooltip-top:after,
+          .tooltip-top:before,
+          .tooltip:after,
+          .tooltip:before,
+          [data-tooltip]:after,
+          [data-tooltip]:before {
+            bottom: 100%;
+            left: 65%;
+            @include media("<small") {
+              left: 50%;
+            }
+          }
+        }
+
+        &:last-child {
+          /* Top (default) */
+          .tooltip-top:after,
+          .tooltip-top:before,
+          .tooltip:after,
+          .tooltip:before,
+          [data-tooltip]:after,
+          [data-tooltip]:before {
+            bottom: 100%;
+            left: 35%;
+            @include media("<small") {
+              left: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .benefits {
+    color: $grey;
+    font-size: 1rem;
+    font-family: $brand-font-bold;
+    text-align: center;
+
+    p {
+      font-family: $brand-font-bold;
+      color: $green;
+      font-size: 1.4rem;
+      line-height: 1.25em;
+      @include media("<=small") {
+        font-size: 1.1rem;
+      }
+    }
+
+    .icon {
+      max-height: 150px;
+      max-width: 150px;
+      min-height: 150px;
+      display: block;
+      margin: 0 auto;
+      padding: 1em;
+      @include media("<=small") {
+        height: 90px;
+        width: 120px;
+      }
+    }
+  }
+
+  .fixed-nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: $grey-lightest;
+    z-index: 5;
+  }
+
+  .landing-header {
+    background: white;
+    padding: 150px 0 0;
+
+    h1 {
+      text-align: left;
+    }
+
+    figure {
+      img,
+      svg {
+        //max-height: 450px;
+        width: 100%;
+        max-width: 550px;
+      }
+
+      figcaption {
+        font-size: 0.9rem;
+        font-family: $brand-font-medium;
+      }
+      @include media("<=small") {
+        display: none;
+      }
+    }
+    @include media("<=small") {
+      padding: 90px 0 0;
+    }
+  }
+
+  .footer-cta {
+    background: $grey-dark;
+    padding: 36px 0;
+  }
+}
+
+.landing-callouts {
+  .callout {
+    margin-bottom: 20px;
+    .graphic {
+      @include media("<=small") {
+        display: none;
+      }
+    }
+  }
+  .callout:nth-child(even) {
+    .graphic {
+      order: 1;
+    }
+
+    .desc {
+      order: 2;
+    }
+  }
+}

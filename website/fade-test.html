@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fade Out Before Redirect</title>
+    <style>
+        body {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        body.fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index02.html">Page 1</a></li>
+            <li><a href="page2.html">Page 2</a></li>
+            <!-- Add more navigation items as needed -->
+        </ul>
+    </nav>
+    <div id="mainContent">
+        <!-- Your content here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav a');
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Fade out the entire body
+                    document.body.classList.add('fade-out');
+
+                    // Wait for the fade-out to complete before redirecting
+                    setTimeout(() => {
+                        window.location.href = this.href;
+                    }, 500); // Match this to the duration of the CSS transition
+                });
+            });
+        });
+    </script>
+</body>
+</html>

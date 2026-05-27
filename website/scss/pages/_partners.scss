@@ -1,0 +1,52 @@
+.partners-section-links {
+  border-bottom: $dividing-border;
+  padding      : 20px 0;
+
+  .icon {
+    width    : 100%;
+    height   : auto;
+    max-width: 80px;
+    display  : block;
+    margin   : 0 auto;
+    @include media("<=small") {
+      max-width: 50px;
+    }
+  }
+
+  span {
+    font-family: $brand-font-bold;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+.partner-logo-grid {
+  padding: 30px 0;
+
+  img {
+    display   : block;
+    text-align: center;
+    width     : 100%;
+    max-width : 330px;
+    margin    : 0 auto;
+  }
+
+  .partner-text {
+    padding: 0 15px;
+
+    p {
+      font-size: 0.75em;
+    }
+  }
+}
+
+.partners-page {
+  h2 {
+    color     : $green;
+    text-align: center;
+  }
+
+  .page-simple {
+    max-width: 1250px;
+  }
+}

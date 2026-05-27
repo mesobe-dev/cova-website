@@ -1,0 +1,7 @@
+//compile all files in this folder into this file, then call this file into style.scss
+//contains styling for larger layout components; e.g. content layouts, sidebar layouts, etc.
+@import "header";
+@import "main";
+@import "footer";
+
+ 

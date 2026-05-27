@@ -1,0 +1,60 @@
+.nuera-policies {
+  .nuera-includes {
+    color      : $green;
+    font-weight: bold;
+    font-size  : 1.2rem;
+    line-height: 1.2em;
+  }
+
+  h1 {
+    color: $grey-dark;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .coverage-sm {
+    padding: 20px 30px;
+    @include media("<=small") {
+      padding: 0;
+    }
+  }
+
+  .icon {
+    max-width : 76px;
+    display   : block;
+    text-align: center;
+    margin    : 0 auto;
+  }
+}
+
+.insurance-listing-item {
+  &.coming-soon {
+    .insurance-type-content {
+      h3 {
+        position: relative;
+
+        &:after {
+          display  : block;
+          position : absolute;
+          content  : "(Coming Soon!)";
+          color    : $green-light;
+          font-size: 14px;
+          bottom   : -20px;
+          left     : 0;
+        }
+      }
+    }
+  }
+
+  &.nav-no-link {
+    .insurance-type-content {
+      a {
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+}

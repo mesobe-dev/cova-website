@@ -1,0 +1,659 @@
+nav {
+  z-index: 2030;
+}
+
+.top-bar {
+  background-color: white;
+  width           : 100%;
+  padding         : 0 0.25em;
+  display         : flex;
+  justify-content : flex-end;
+  align-items     : center;
+  height          : 42px;
+
+  @include media ('<=medium') {
+    display: none;
+  }
+
+  &__link {
+    color         : $grey;
+    font-size     : 0.9rem;
+    vertical-align: middle;
+    padding       : 0.5em 1em;
+    font-family   : $brand-font-medium;
+    border-bottom : none;
+
+    &:hover {
+      border-bottom: none;
+    }
+
+    span {
+      /* icons*/
+      color         : $grey-light;
+      font-size     : 0.8em;
+      padding       : 0 0.6em;
+      vertical-align: middle;
+    }
+  }
+
+  &__info {
+    p {
+      position: relative;
+    }
+  }
+
+  .social {
+    ul {
+      margin : 0;
+      padding: 0.5em 1em;
+      display: inline-block;
+
+      li {
+        display        : inline-block;
+        margin         : 0;
+        padding        : 0 0.25em;
+        list-style-type: none;
+        color          : $grey;
+        font-size      : 0.9rem;
+      }
+    }
+  }
+}
+
+#nuera-logo {
+  .era,
+  .insurance {
+    fill: $grey;
+  }
+
+  .nu {
+    fill: $green;
+  }
+}
+
+#questionsToggle {
+  position          : relative;
+  z-index           : 99;
+  -webkit-transition: all 0.33s ease;
+  transition        : all 0.33s ease;
+  border            : 0;
+  outline           : none;
+  /*&:hover {
+      background-color: darken($green-lightest, 5%);
+      color: $grey;
+      span {
+          color: $grey;
+      }
+    }*/
+}
+
+.questions-toggle-active {
+  background-color: darken($green-lightest, 10%);
+  color           : $grey;
+
+  span {
+    color: $grey;
+  }
+}
+
+.notification-bar {
+  display          : none;
+  position         : fixed;
+  bottom           : 0;
+  left             : 50%;
+  -webkit-transform: translatex(-50%);
+  transform        : translatex(-50%);
+  max-width        : 1200px;
+  width            : 100%;
+  z-index          : 9999;
+
+  @include media ('<=medium') {
+    bottom: auto;
+    top   : 0;
+  }
+
+  p {
+    display    : block;
+    text-align : center;
+    background : black;
+    color      : #aed136;
+    font-size  : 20px;
+    font-weight: bold;
+    padding    : 1em 2em;
+    margin     : 0;
+
+    @include media ('<=medium') {
+      font-size    : 16px;
+      padding-right: 3em;
+    }
+  }
+
+  #closeNotification {
+    position         : fixed;
+    top              : 50%;
+    -webkit-transform: translateY(-50%);
+    transform        : translateY(-50%);
+    right            : 2px;
+    color            : white;
+    font-size        : 26px;
+    cursor           : pointer;
+
+    @include media ('<=medium') {
+      right: 10px;
+    }
+  }
+}
+
+.questions-bar {
+  display         : none;
+  background-color: darken($green-lightest, 10%);
+
+  .question-box {
+    padding   : 2em 1em;
+    text-align: center;
+
+    p {
+      font-size: 14px;
+      margin   : 0 0 0.75em;
+    }
+
+    a {
+      font-size: 14px;
+    }
+  }
+}
+
+.main-nav {
+  position       : fixed;
+  /*top: 42px;*/
+  left           : 0;
+  width          : 100%;
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  height         : 50px;
+  overflow       : visible;
+  background     : white;
+
+  @include media ('<=medium') {
+    display: none;
+  }
+
+  .logo-container {
+    max-width: 130px;
+    width    : 100%;
+    padding  : 0 0 0 25px;
+    @include media("<large") {
+      max-width  : 90px;
+      width      : 100%;
+      padding    : 0;
+      margin-left: 30px;
+    }
+  }
+
+  .chat,
+  .quote {
+    color: $white;
+
+    a.btn {
+      max-width : none;
+      padding   : 0.4em;
+      text-align: center;
+
+      @include media ('<large') {
+        padding  : 0.4em 0.2em;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .main-nav__menu {
+    /* margin: 0 auto 0 50px;*/
+    padding: 0;
+
+    ul {
+      margin : 0;
+      padding: 0;
+
+      li {
+        position  : relative;
+        display   : inline-block;
+        list-style: none;
+        padding   : 0;
+
+        &:not(:first-child):after {
+          background     : url('../images/nav-divider.svg') no-repeat 0 0;
+          background-size: 20px;
+          content        : "";
+          display        : inline-block;
+          width          : 20px;
+          height         : 20px;
+          position       : absolute;
+          top            : 3px;
+          left           : -10px;
+          @include media("<large") {
+            background-size: 8px;
+            width          : 8px;
+            height         : 8px;
+            top            : 8px;
+            left           : -8px;
+          }
+        }
+      }
+    }
+
+    .main-nav__link {
+      color         : $grey;
+      font-size     : 0.95rem;
+      text-transform: uppercase;
+      padding       : 2em 1.5em;
+      position      : relative;
+
+      span {
+        font-family: $brand-font-bold;
+
+        span {
+          color: $green;
+        }
+      }
+
+      &:hover + .main-nav__submenu {
+        display           : block;
+        -webkit-transition: all 0.3s ease;
+        transition        : all 0.3s ease;
+      }
+      @include media("<large") {
+        padding  : 1.7em 0.7em;
+        font-size: 0.8rem;
+      }
+    }
+
+    .main-nav__submenu {
+      display           : none;
+      position          : absolute;
+      top               : 50px;
+      left              : 1.6em;
+      background        : $white;
+      -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+      box-shadow        : 0 0 15px 0 rgba(0,0,0,0.1);
+      @include media("<large") {
+        top : 40px;
+        left: 0.5em;
+      }
+
+      li:not(:first-child):after {
+        display: none;
+      }
+
+      &:hover {
+        display           : block;
+        -webkit-transition: all 0.2s ease;
+        transition        : all 0.2s ease;
+      }
+    }
+
+    .main-nav__sublink {
+      position          : relative;
+      background        : $white;
+      display           : block;
+      font-family       : $brand-font-bold;
+      color             : $grey;
+      font-size         : 0.9rem;
+      padding           : 15px;
+      min-width         : 250px;
+      -webkit-transition: all 0.2s ease;
+      transition        : all 0.2s ease;
+
+      &:hover {
+        background        : rgba($green, 0.4);
+        -webkit-transition: all 0.2s ease;
+        transition        : all 0.2s ease;
+      }
+    }
+  }
+
+  &.main-nav--shrink {
+    height            : 90px;
+    background        : $grey;
+    -webkit-box-shadow: rgba(0,0,0,0.2) 0 1px 8px;
+    box-shadow        : rgba(0,0,0,0.2) 0 1px 8px;
+
+    #nuera-logo {
+      .era,
+      .insurance {
+        fill: $white;
+      }
+    }
+
+    .main-nav__link {
+      color: $white;
+    }
+  }
+}
+
+.mobile-nav {
+  position          : fixed;
+  background        : $grey-dark;
+  left              : 0;
+  display           : none;
+  -webkit-box-align : end;
+  -ms-flex-align    : end;
+  align-items       : flex-end;
+  -webkit-box-pack  : end;
+  -ms-flex-pack     : end;
+  justify-content   : flex-end;
+  overflow          : visible;
+  -webkit-transition: all 0.3s;
+  transition        : all 0.3s;
+
+  @include media (' <=large') {
+    display: none;
+  }
+
+  @include media ('<=medium') {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width  : 300px;
+    left   : 0;
+    bottom : 0;
+  }
+
+  @include media ('<=extra-small') {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width  : 100%;
+    left   : 0;
+    bottom : -100%;
+  }
+
+  .btn {
+    margin     : 0;
+    max-width  : none;
+    width      : 100%;
+    text-align : center;
+    font-weight: bold;
+    font-size  : 16px;
+    padding    : 1em 2em;
+
+    i {
+      margin-right: 8px;
+    }
+
+    @include media ('<=extra-small') {
+      font-size: 12px;
+      padding  : 1em;
+      min-width: 33%;
+    }
+  }
+
+  .mobile-nav__menu {
+    background: $grey-dark;
+
+    ul {
+      padding: 0;
+
+      li {
+        color      : $white;
+        font-weight: bold;
+        list-style : none;
+        padding    : 0;
+        font-size  : 0.9rem;
+        display    : block;
+        float      : left;
+        width      : 100%;
+        @include media("height<=small") {
+          font-size: 0.8rem;
+        }
+
+        a {
+          display  : block;
+          float    : left;
+          width    : 100%;
+          padding  : 1em;
+          /* 1em 0.5em 1em;*/
+          font-size: 14px;
+
+          &:hover {
+            color: $green;
+          }
+        }
+
+        ul {
+          li {
+            display: inline-block;
+            float  : left;
+            width  : 50%;
+
+            &:nth-child(odd) {
+              border-right: 1px solid $grey;
+            }
+
+            a {
+              display: inline-block;
+              float  : left;
+              width  : 100%;
+              /*border-bottom:none;*/
+              padding: 0 1em 1em 3em;
+              /*text-align:center;*/
+            }
+          }
+        }
+      }
+    }
+
+    .home-make-a-claim {
+      display: none;
+    }
+  }
+
+  .chat {
+    .btn {
+      min-width: 0;
+
+      span {
+        display: none;
+      }
+
+      .fa-commenting {
+        -webkit-transform: rotate(-90deg);
+        transform        : rotate(-90deg);
+      }
+    }
+
+    @include media ('<=medium') {
+      -webkit-transform: rotate(90deg);
+      transform        : rotate(90deg);
+      position         : absolute;
+      right            : -70px;
+      top              : 22%;
+    }
+
+    @include media ('<=extra-small') {
+      -webkit-transform: rotate(0deg);
+      transform        : rotate(0deg);
+      position         : static;
+
+      .btn {
+        span {
+          display: block;
+        }
+
+        .fa-commenting {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .menu {
+    @include media ('<=medium') {
+      -webkit-transform: rotate(90deg);
+      transform        : rotate(90deg);
+      position         : absolute;
+      right            : -76px;
+      top              : 44.55%;
+    }
+
+    @include media ('<=extra-small') {
+      -webkit-transform: rotate(0deg);
+      transform        : rotate(0deg);
+      position         : static;
+    }
+
+    .btn {
+      .fa-bars {
+        @include media ('<=medium') {
+          -webkit-transform: rotate(90deg);
+          transform        : rotate(90deg);
+        }
+
+        @include media ('<=extra-small') {
+          -webkit-transform: rotate(0deg);
+          transform        : rotate(0deg);
+        }
+      }
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .quote {
+    display : block;
+    position: absolute;
+    left    : 0;
+    top     : -10%;
+
+    a {
+      min-width: 300px;
+
+      @include media ('<=extra-small') {
+        min-width: 0;
+      }
+    }
+
+    @include media ('<=extra-small') {
+      position: relative;
+      display : block;
+    }
+
+    .btn {
+      color: $white;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .claims,
+  .login {
+    .btn {
+      color: $grey-dark;
+      @include media("height<=small") {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .claims .btn {
+    background: #dcdddd;
+
+    &:hover {
+      color: $green;
+    }
+  }
+
+  .login .btn {
+    background: #f6fbf3;
+
+    &:hover {
+      color: $green;
+    }
+  }
+}
+
+#livechat-compact-container {
+  display: none !important;
+}
+
+.mobile-nav-logo {
+  display          : -webkit-box;
+  display          : -ms-flexbox;
+  display          : flex;
+  -webkit-box-pack : justify;
+  -ms-flex-pack    : justify;
+  justify-content  : space-between;
+  -webkit-box-align: center;
+  -ms-flex-align   : center;
+  align-items      : center;
+}
+
+.canada-flag {
+  display       : inline-block;
+  margin        : 0 20px;
+  vertical-align: middle;
+  width         : 22px;
+  height        : 11px;
+}
+
+.home-navigation {
+  @include media("<large") {
+    display: none;
+  }
+  @include media("<=small") {
+    display: none;
+  }
+}
+
+.navbar {
+  display: none;
+
+  .logo-container {
+    &.tablet-logo {
+      display    : none;
+      width      : 100px;
+      padding    : 0;
+      margin-left: 15px;
+      margin-top : calc((60px - 38px) / 2);
+
+      @include media ('<=large') {
+        display: inline-block;
+        float  : left;
+      }
+
+      @include media ('<=small') {
+        display   : inline-block;
+        width     : 60px;
+        margin-top: calc((60px - 24px) / 2);
+      }
+    }
+  }
+
+  .phone {
+    display     : block;
+    float       : right;
+    margin-right: 30px;
+    font-size   : 14px;
+    font-weight : bold;
+    padding     : 0 15px;
+    margin-top  : calc((60px - 17px) / 2);
+    @include media("<=small") {
+      margin-right: 5px;
+      font-size   : 12px;
+    }
+
+    span {
+      color: $green;
+    }
+  }
+  @include media("<large") {
+    display: block;
+  }
+  @include media("<=small") {
+    display: block;
+  }
+}

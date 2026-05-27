@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seamless AJAX Page Load Example</title>
+    <style>
+        #content {
+            padding: 20px;
+            transition: opacity 0.5s ease;
+        }
+        .loading {
+            opacity: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="page1.html">Page 1</a>
+        <a href="page2.html">Page 2</a>
+    </nav>
+    <div id="content">
+        <h1>Welcome to Page Load Example</h1>
+        <p>This is the initial content.</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('a').on('click', function(e) {
+                e.preventDefault();
+                var href = this.href;
+                var $content = $('#content');
+
+                // Show loading effect
+                $content.addClass('loading');
+
+                $.ajax({
+                    url: href,
+                    success: function(data) {
+                        // Find the new content and update
+                        var newContent = $(data).find('#content').html();
+                        if (newContent) {
+                            $content.html(newContent).removeClass('loading');
+                            // Update browser history
+                            history.pushState(null, null, href);
+                        } else {
+                            console.error('New content not found in the response');
+                            $content.removeClass('loading');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading content:', status, error);
+                        $content.removeClass('loading');
+                        $content.html('<p>Error loading page.</p>');
+                    }
+                });
+            });
+
+            // Handle browser back/forward navigation
+            $(window).on('popstate', function() {
+                loadPage(window.location.href);
+            });
+
+            function loadPage(url) {
+                var $content = $('#content');
+                $content.addClass('loading');
+                $.ajax({
+                    url: url,
+                    success: function(data) {
+                        $content.html($(data).find('#content').html()).removeClass('loading');
+                    },
+                    error: function() {
+                        $content.removeClass('loading');
+                        $content.html('<p>Error loading page.</p>');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

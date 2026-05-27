@@ -1,0 +1,310 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>	
+<link href="../css/jquery-ui.css" rel="stylesheet">	
+
+<link href="../css/style_port.css" rel="stylesheet" type="text/css">
+<link href="../css/custom.css" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeDiv = document.getElementById('block-load'); //Parent div ID
+    const links = fadeDiv.querySelectorAll('.hide-link');
+
+    // Start the fade-in effect
+    setTimeout(() => {
+        fadeDiv.classList.add('fade-in');
+        // Wait for the fade-in transition to complete
+        setTimeout(() => {
+            links.forEach(link => {
+                link.classList.add('show-link');
+            });
+        }, 6055); // Match css fade delay of 'block-load' parent
+    }, 0); // Small delay to ensure the transition is applied after the page load
+});	
+	
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeDiv = document.getElementById('fadeDiv');
+    let lastScrollTop = 0;
+
+    // Function to apply initial fade in and up
+    function fadeInUpInitial() {
+        fadeDiv.classList.add('fade-in-up');
+        fadeDiv.classList.remove('fade-out', 'fade-in-up-scroll');
+    }
+
+    // Function to fade out
+    function fadeOut() {
+        fadeDiv.classList.remove('fade-in-up', 'fade-in-up-scroll');
+        fadeDiv.classList.add('fade-out');
+    }
+
+    // Function for different fade in and up on scroll up
+    function fadeInUpScroll() {
+        fadeDiv.classList.remove('fade-out', 'fade-in-up');
+        fadeDiv.classList.add('fade-in-up-scroll');
+    }
+
+    // Initial fade in and up
+    fadeInUpInitial();
+
+    // Scroll event listener
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            fadeOut();
+        } else if (scrollTop < lastScrollTop) {
+            // Scrolling up
+            if (scrollTop === 0) {
+                // Only fade in when fully at the top
+                fadeInUpScroll();
+            }
+        }
+        lastScrollTop = scrollTop;
+    }, false);
+});
+	
+</script>
+		
+
+<!--
+
+       / \      _-'
+     _/|  \-''- _ /
+__-' { |          \
+    /             \
+    /       "o.  |o"}    Hello! Thanks for peeking under the hood.
+    |            \ ;
+     _            ',
+       \_         __\
+         ''-_    \.//
+           / '-____'
+          /
+        _'
+      _-'
+
+-->
+	
+<style>
+
+	
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images/pre-loaders/64/Preloader_8.gif) center no-repeat #fff;
+}
+	
+	.port-pos {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%; /* To ensure it spans the full width */
+
+	}
+		
+	
+	.port-images {
+		text-align: center;
+
+	}
+	
+	.port-images img {
+
+	}
+	.port-images img:first-child {
+		padding-bottom: 40px;
+	}
+	
+	.port-txt { padding: 0 0 0 40px; test-align: center; }
+	
+	.port-txt h1 {
+		font-weight: 200;
+		font-size: 2.2rem;
+		padding: 0 0 20px 50px;
+	}
+	
+	.port-txt p {
+		padding: 0 0 0 50px;
+		width: 400px;
+		font-size: 14px;
+		
+	}
+	
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: white; /* or any color you prefer */
+    padding: 10px;
+    z-index: 1000; /* ensures it stays on top of other elements */
+}	
+	
+/* Animation Styles */
+
+body {
+	opacity: 1;
+    transition: opacity 5s ease-in-out;
+}
+	
+body.fade-out {
+	opacity: 0;
+}	
+	
+.fade-out-page {
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    opacity: 0;
+	animation: fadeOutPage ease 1000ms forwards;
+	animation-delay: 0ms;
+}	
+		
+.fade-in-up-scroll {
+  opacity: 0;
+  animation: fadeInUp 1s ease-in-out 10ms forwards;
+}
+
+#block-1a {
+	display: block;
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+	animation-delay: 2800ms;
+    
+}
+	
+#block-2a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 3265ms;
+}
+	
+#block-3a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 3730ms;
+}
+	
+#block-4a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+	animation-delay: 4195ms;
+    
+}
+	
+#block-5a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 4660ms;
+}
+	
+#block-6a {
+    opacity: 0;
+    animation: fadeIn ease 1800ms forwards;
+    animation-delay: 5125ms;
+}
+	
+#block-load {
+    opacity: 0;
+    animation: fadeIn ease 1700ms forwards;
+    animation-delay: 6055ms;
+}
+		
+
+@keyframes fadeIn{
+    0% { opacity: 0; }
+    60% { opacity: 1; }
+    100% { opacity: 1; }
+}
+	
+
+	
+	@keyframes fadeOutPage{
+from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* End Animation Styles */	
+</style>	
+
+	
+<title>COVA multimedia</title>
+<script>
+	$(window).load(function() {
+		$("body").removeClass("preload");;
+		$(".se-pre-con").fadeOut("slow");;
+		$("#slideshow01").addClass("slideshow01");;
+		$("#slideshow02").addClass("slideshow02");;
+		$("#slideshow03").addClass("slideshow03");;
+	});
+</script>
+ <script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body class="preload">
+<div class="se-pre-con"></div>
+
+	<div class="container-fluid port-pos">
+		<div class="row">
+			<div class="col-md-6 port-images" style="min-height: 400px;">
+				<div style="text-align: right;">
+						<a href="../index.html"><img src="../images/port/test-image.webp" /></a>
+
+				</div>	
+			</div>
+			<div class="col-md-6">
+				<div style="width: 500px; margin: 205px 0px 10px calc((100% - 490px) * 0.5);">
+						<h1>CK SOFTWARE</h1>
+						<p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Donec Fringilla Euismod Tempor. 
+		Aliquam Sit Amet Ante Nec Justo Ultricies Porta At Et Turpis. Etiam Justo Mi, Cursus Sit Amet 
+		Nisi Facilisis, Laoreet Bibendum Nulla.</p>
+						<p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Donec Fringilla Euismod Tempor. 
+		Aliquam Sit Amet Ante Nec Justo Ultricies Porta At Et Turpis. Etiam Justo Mi, Cursus Sit Amet 
+		Nisi Facilisis, Laoreet Bibendum Nulla.</p>
+					<P>	<a href="../index.html">Back</a></p>	
+	</div></P>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<script src="../js/lightbox-plus-jquery.min.js"></script>	
+	<script src="../js/jquery-ui.js"></script>	
+	    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Fade out the entire body
+                    document.body.classList.add('fade-out-page');
+
+                    // Wait for the fade-out to complete before redirecting
+                    setTimeout(() => {
+                        window.location.href = this.href;
+                    }, 1200); // Match this to the duration of the CSS transition
+                });
+            });
+        });
+    </script>
+
+</body>
+</head>
+</html>

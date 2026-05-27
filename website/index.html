@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>	
+<link href="css/jquery-ui.css" rel="stylesheet">	
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeDiv = document.getElementById('block-load'); //Parent div ID
+    const links = fadeDiv.querySelectorAll('.hide-link');
+
+    // Start the fade-in effect
+    setTimeout(() => {
+        fadeDiv.classList.add('fade-in');
+        // Wait for the fade-in transition to complete
+        setTimeout(() => {
+            links.forEach(link => {
+                link.classList.add('show-link');
+            });
+        }, 6055); // Match css fade delay of 'block-load' parent
+    }, 0); // Small delay to ensure the transition is applied after the page load
+});	
+	
+document.addEventListener('DOMContentLoaded', function() {
+    const fadeDiv = document.getElementById('fadeDiv');
+    let lastScrollTop = 0;
+
+    // Function to apply initial fade in and up
+    function fadeInUpInitial() {
+        fadeDiv.classList.add('fade-in-up');
+        fadeDiv.classList.remove('fade-out', 'fade-in-up-scroll');
+    }
+
+    // Function to fade out
+    function fadeOut() {
+        fadeDiv.classList.remove('fade-in-up', 'fade-in-up-scroll');
+        fadeDiv.classList.add('fade-out');
+    }
+
+    // Function for different fade in and up on scroll up
+    function fadeInUpScroll() {
+        fadeDiv.classList.remove('fade-out', 'fade-in-up');
+        fadeDiv.classList.add('fade-in-up-scroll');
+    }
+
+    // Initial fade in and up
+    fadeInUpInitial();
+
+    // Scroll event listener
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            fadeOut();
+        } else if (scrollTop < lastScrollTop) {
+            // Scrolling up
+            if (scrollTop === 0) {
+                // Only fade in when fully at the top
+                fadeInUpScroll();
+            }
+        }
+        lastScrollTop = scrollTop;
+    }, false);
+});
+	
+</script>
+		
+
+<!--
+
+       / \      _-'
+     _/|  \-''- _ /
+__-' { |          \
+    /             \
+    /       "o.  |o"}    Hello! Thanks for peeking under the hood.
+    |            \ ;
+     _            ',
+       \_         __\
+         ''-_    \.//
+           / '-____'
+          /
+        _'
+      _-'
+
+-->
+	
+<style>
+
+	
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/pre-loaders/64/Preloader_8.gif) center no-repeat #fff;
+}			
+	
+
+#fadeDiv {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.sticky-but {
+	padding: 5px 8px 5px 8px;
+	font-size: .6rem;
+	color: #fff;
+	text-transform: uppercase;
+	background: #ac5820;
+  	position: absolute; /* Position relative to the nearest positioned ancestor */
+  	bottom: 0; /* Stick to the bottom */
+	right: 0; /* Stick to the right */
+	
+}
+	
+.cust-list {
+	list-style-type: none;
+    padding: 0;
+	margin: 0;
+ }
+        
+.cust-list li {
+	background-image: url('images/chevron.png'); 
+	background-repeat: no-repeat;
+	background-position: 0 9px; /* Adjust position as needed */
+	padding-left: 15px; /* Space for the icon */
+	padding-bottom: 7px;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 200;
+	font-size: .97rem;
+}	
+	
+	.block-1a, .block-2a, .block-3a, .block-4a, .block-5a, .block-6a  {
+		background: rgba(0, 0, 0, 0.6);
+		margin: 8px;
+		transition: background-color 0.5s ease;
+		position: relative;
+	}
+	
+	.block-1a:hover, .block-2a:hover, .block-3a:hover, .block-4a:hover, .block-5a:hover, .block-6a:hover  {
+		background: rgba(0, 0, 0, 1);
+	}	
+	
+	.block-load {
+		/*background: rgb(0, 0, 0, 1);*/
+		
+		height: auto;
+		margin: 10px;
+	}
+	
+	.block-load h1 {
+		font-weight: 400;
+		color: #fff;
+		text-transform: uppercase;
+		font-size: 1.3rem;
+		padding: 15px 0 15px 0;
+		
+	}
+	
+.col-md-4 {
+  display: flex; /* Ensures column flex container for items */
+  flex-direction: column; /* Stack items vertically */
+}
+
+.item {
+  background-color: rgba(0, 0, 0, .75); /* For visibility */
+  padding: 15px; /* Optional padding */
+  margin-bottom: 15px; /* Adds 15px of space between items */
+}
+
+/* Remove margin from the last item in each column */
+.col-md-4 > .item:last-child {
+  margin-bottom: 0;
+}	
+
+#port-list a { margin: 0; padding: 0; text-decoration: none; color: #fff; }	
+
+.hide-link {
+    visibility: hidden;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.show-link {
+    visibility: visible;
+}	
+	
+	
+/* Animation Styles */
+
+body {
+	opacity: 1;
+    transition: opacity 5s ease-in-out;
+}
+	
+body.fade-out {
+	opacity: 0;
+}	
+	
+.fade-out-page {
+    opacity: 0;
+	animation: fadeOutPage ease 1000ms forwards;
+	animation-delay: 0ms;
+}	
+	
+.fade-in-up {
+  opacity: 1;
+  animation: fadeInUp 1s ease-in-out 1350ms forwards;
+}
+	
+.fade-in-up-scroll {
+  opacity: 0;
+  animation: fadeInUp 1s ease-in-out 10ms forwards;
+}
+
+#block-1a {
+	display: block;
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+	animation-delay: 2800ms;
+    
+}
+	
+#block-2a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 3265ms;
+}
+	
+#block-3a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 3730ms;
+}
+	
+#block-4a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+	animation-delay: 4195ms;
+    
+}
+	
+#block-5a {
+    opacity: 0;
+    animation: fadeIn ease 1900ms forwards;
+    animation-delay: 4660ms;
+}
+	
+#block-6a {
+    opacity: 0;
+    animation: fadeIn ease 1800ms forwards;
+    animation-delay: 5125ms;
+}
+	
+#block-load {
+    opacity: 0;
+    animation: fadeIn ease 1700ms forwards;
+    animation-delay: 6055ms;
+}
+		
+
+@keyframes fadeIn{
+    0% { opacity: 0; }
+    60% { opacity: 1; }
+    100% { opacity: 1; }
+}
+	
+@keyframes fadeOut{
+from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+	
+	@keyframes fadeOutPage{
+from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* End Animation Styles */	
+
+</style>	
+
+	
+<title>COVA multimedia</title>
+<script>
+	$(window).load(function() {
+		$("body").removeClass("preload");;
+		$(".se-pre-con").fadeOut("slow");;
+		$("#slideshow01").addClass("slideshow01");;
+		$("#slideshow02").addClass("slideshow02");;
+		$("#slideshow03").addClass("slideshow03");;
+	});
+</script>
+ <script>
+  window.console = window.console || function(t) {};
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body class="preload">
+<div class="se-pre-con"></div>
+		<header class="logo-place fade-in-up" id="fadeDiv" style="margin-bottom: 40px;">
+			<img src="images/cova-logo.svg" />
+			&nbsp;
+		</header>
+	
+		<div class="container" id="port-list" style="margin-top: 140px;">
+			<div class="row" >
+				<div class="col-md-4" id="row01">
+					<div class="block-1a" id="block-1a">
+						<div class="block-load" id="block-load"><nav><a class="hide-link" href="index02.html"></nav>
+							<img src="images/port/CK-software.svg" style="width: 100%;" />
+							<h1>CK Software</h1>
+							<ul class="cust-list">
+								<li>logo design</li>
+								<li>Print design</li>
+								<li>Web design & development</li>
+								<li>WordPress cms integration</li>
+							</ul>
+							<div class="sticky-but">View Project</div>
+							</a>
+						</div>
+					</div>
+					<div class="block-4a" id="block-4a">
+						<div class="block-load" id="block-load">
+						<img src="images/port/foundation.png" style="width: 100%;" />
+							<h1>Foundation Real Estate CRM</h1>
+							<ul class="cust-list">
+								<li>Web design & development</li>
+								<li>Wordpress CMS integration</li>
+							</ul>
+							<div class="sticky-but">View Project</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4" id="row02">
+					<div class="block-2a" id="block-2a">
+						<div class="block-load" id="block-load">
+							<img src="images/port/thermal-systems.png" style="width: 100%;" />
+							<h1>Thermal Systems</h1>
+							<ul class="cust-list">
+								<li>Web design & development</li>
+								<li>Wordpress CMS integration</li>
+							</ul>
+							<div class="sticky-but">View Project</div>
+						</div>
+					</div>
+					<div class="block-5a" id="block-5a">
+						<div class="block-load" id="block-load">
+							<img src="images/port/mopspot.png" style="width: 100%;" />
+								<h1>MopSpot</h1>
+								<ul class="cust-list">
+									<li>Funnel & UI / UX</li>
+									<li>Icon design</li>
+								</ul>
+							<div class="sticky-but">View Project</div>
+						</div>
+					</div>					
+				</div>
+				<div class="col-md-4" id="row03">
+					<div class="block-3a" id="block-3a">
+						<div class="block-load" id="block-load">
+							<img src="images/port/valt.png" style="width: 100%;" />
+							<h1>Valt Real Estate Exchange</h1>
+							<ul class="cust-list">
+								<li>Funnel UI / ux design</li>
+								<li>Wordpress CMS integration</li>
+								<li>Web design & development</li>
+							</ul>
+							<div class="sticky-but">View Project</div>
+						</div>
+					</div>
+					<div class="block-6a" id="block-6a">
+						<div class="block-load" id="block-load">
+					<img src="images/port/valet.png" style="width: 100%;" />
+							<h1>Valet Financial</h1>
+							<ul class="cust-list">
+								<li>Web design & development</li>
+								<li>Wordpress CMS integration</li>
+								<li>Logo design</li>								
+							</ul>
+							<div class="sticky-but">View Project</div>							
+						</div>
+					</div>					
+				</div>
+					
+				
+			</div>
+		</div>
+	<div style="height: 1000px;"></div>
+	
+	<script src="js/lightbox-plus-jquery.min.js"></script>	
+	<script src="js/jquery-ui.js"></script>	
+	    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Fade out the entire body
+                    document.body.classList.add('fade-out-page');
+
+                    // Wait for the fade-out to complete before redirecting
+                    setTimeout(() => {
+                        window.location.href = this.href;
+                    }, 1200); // Match this to the duration of the CSS transition
+                });
+            });
+        });
+    </script>
+
+</body>
+</head>
+</html>

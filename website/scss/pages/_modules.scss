@@ -1,0 +1,104 @@
+	
+	.module-intro {
+		height: 310px;
+		margin-bottom: 80px;
+		.module-logo {
+			height: 75px;
+    		margin-left: 0;
+    		margin-right: 100%;
+			display:block;
+		}
+		.btn-land {
+			margin-left: 0;
+    		margin-right: 100%;
+			bottom: 0px;
+    		position: absolute;
+			font-size: 0.9em;
+			min-width: 140px;
+			line-height: 1;
+		}
+		.learn-more {
+			color: #61b4e4 !important;
+			display: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	
+
+	.module-header img {
+		height: 100px;
+    	margin-top: 5%;
+		display: block;
+	}	
+	.module-header-text {
+		border-left: 1px solid;
+    	padding-left: 50px !important;
+		flex: 1 !important;
+	}	
+	.module-features-header {
+		text-align: center;
+    	text-transform: uppercase;
+		/*margin: 0px auto 30px auto;*/
+	}
+	.module-features {
+		margin-bottom: 30px;
+		ul li:before {
+    		content: url(/wp-content/themes/nude/media/images/logo/nude-bullet-black.svg);
+    		display: inline-block;
+    		margin-left: -26px;
+    		margin-top: -5px;
+    		padding-right: 10px;
+    		vertical-align: middle;
+    		height: 15px;
+    		width: 15px;
+		}
+	}
+	.module-cta {
+		text-align: center;
+		.btn-land {
+			margin: 50px auto 100px auto;
+		}
+	}
+	.module-background {
+    	background-size: cover;
+    	background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,0.9)), url(/wp-content/themes/nude/media/images/logo/Nude_Black_Icon.svg) no-repeat center;
+	}
+
+@include media("<=small") {
+	.module-intro {
+		height: auto;
+		margin-bottom: 60px;
+		.module-logo {
+    		margin-left: auto;
+    		margin-right: auto;
+		}
+		.btn-land {
+		    margin-left: auto;
+    		margin-right: auto;
+    		position: relative;
+	}
+	}
+	
+}
+
+@include media("<=medium") {
+		.module-header img {
+		margin: 0 auto 25px;
+	}
+	.module-header-text {
+    	border-left: none !important;
+		padding-left: 15px !important;
+	}
+	.module-features-header {
+		margin: 20px auto 20px auto;
+	}
+	.module-features {
+    	margin: -15px;
+	}
+	.module-cta {
+    	margin-top: 30px;
+	}
+}
+	

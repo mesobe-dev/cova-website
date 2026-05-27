@@ -1,0 +1,375 @@
+// Homepage
+
+.logo {
+	background: url(../images/logo.svg) no-repeat top left;
+	width: 100%; 
+	height: 45px;
+}
+
+.background {
+	 background: url(../images/header_photo.jpg) no-repeat top fixed;
+	
+}
+.header-wrap {
+	width: 100%;
+    height: 942px;
+    background: url(../images/beach-pat.png) repeat-x top;
+    margin: 0px;
+    position: relative;
+    z-index: 1;
+	background-color: #79859c;
+	
+	@include media("<=small") {
+			height: 542px;
+		}
+	
+		@include media("<=large") {
+			height: 700px; // this is breaking your small breakpoint. Investigate
+		}
+}
+
+.header-content {
+	z-index: 2001;
+	position: relative;
+	background-color: none;
+	height: 830px;
+	
+		@include media("<=small") {
+			height: 630px;
+		}
+		@include media("<=large") {
+			height: 600px;
+		}
+}
+
+.trees-l  {
+	background: url(../images/beach-l.png) no-repeat top left;
+	height: inherit;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+	
+	@include media("<=small") {
+			height: 0px;
+			background: none;
+		}
+	@include media("<=medium") {
+			height: 0px;
+			background: none;
+		}
+	@include media("<=large") {
+			height: 0px;
+			background: none;
+		}	
+
+}
+
+.trees-r  {
+	background: url(../images/beach-r.png) no-repeat top right;
+	height: inherit;
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+	@include media("<=small") {
+			background: url(../images/beach-r.png) no-repeat bottom right;
+			height: 642px;
+			background-size: 90%;
+		}
+	@include media("<=medium") {
+			background: url(../images/beach-r.png) no-repeat bottom right;
+			background-size: 90%;
+		}	
+	@include media("<=large") {
+			background: url(../images/beach-r.png) no-repeat bottom right;
+			background-size: 80%;
+		}	
+}
+
+.gradient {
+	background: url(../images/gradient.png) repeat-x bottom;
+	height: inherit;
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+	
+		@include media("<=small") {
+			background: url(../images/gradient.png) repeat-x bottom;
+			background-size: 50%;
+			height: 642px;
+			z-index: 4;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+		@include media("<=medium") {
+			background: url(../images/gradient.png) repeat-x bottom;
+			background-size: 75%;
+			z-index: 4;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;	
+		}
+		@include media("<=large") {
+			background: url(../images/gradient.png) repeat-x bottom;
+			background-size: 90%;
+			z-index: 4;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;	
+		}	
+}
+
+.ttl {
+	z-index: 2002;
+	position: relative;
+}
+
+
+
+
+.page-wrap {
+    //background: url(../images/water-pat02.png) repeat-x top #053589;
+    width: 100%;
+    min-height: 700px;
+	background-color: #7b889c;
+}
+
+.pagebg01 {
+	background: url(../images/pagebg01.png) no-repeat bottom left;
+	height: 800px;
+    position: absolute;
+    top: 10;
+    left: 0;
+    right: 0;
+	@include media("<=small") {
+		height: 900px;
+		}
+	@include media("<=medium") {
+		height: 600px;
+		}
+}
+
+
+.pagebg02 {
+	background: url(../images/pagebg02.png) no-repeat bottom right;
+	height: 2200px;
+    position: absolute;
+    top: 10;
+    left: 0;
+    right: 0;
+	
+	@include media("<=small") {
+		height: 2400px;
+		}
+	@include media("<=medium") {
+		height: 1900px;
+		}
+}
+
+.pagebg03 {
+	background: url(../images/pagebg03.png) no-repeat bottom left;
+	height: 3620px;
+    position: absolute;
+    top: 10;
+    left: 0;
+    right: 0;
+		@include media("<=small") {
+			height: 3920px;
+		}
+}
+
+.pagebg04 {
+	background: url(../images/pagebg04.png) no-repeat bottom right;
+	height: 4290px;
+    position: absolute;
+    top: 10;
+    left: 0;
+    right: 0;
+	@include media("<=small") {
+		display: none;
+	}
+	@include media("<=medium") {
+		display: none;
+	}	
+}
+
+.navbox {
+	height: 44px;
+	width: 330px !important;
+	text-align: right;
+	float: right;
+	margin: 0 45px 0 0;
+	@include media("<=small") {
+		display: none;
+		height: 0;
+	}
+}
+	
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.intro-blurb {
+	padding-top: 110px;
+		@include media("<=small") {
+			padding-top: 0px;
+		}
+		@include media("<=medium") {
+			padding-top: 50px;
+		}
+	p {
+		font-family: 'gothic';
+		text-align: center;
+		font-size: 1.3em;
+		padding-bottom: 40px;
+		line-height: 2.0em;
+		
+		@include media("<=small") {
+			font-size: 1em;
+		}		
+	}
+	
+
+}
+
+.project {
+	color: #fff;
+	img {
+		float: left;
+		width: 40%;
+			@include media("<=small") {
+				width: 98%;
+			}
+	}
+	p {
+		float: right;
+		text-align: left;
+		width: 50%;
+			@include media("<=small") {
+				width: 98%;
+			}
+	}
+	
+	
+	h2 {
+		float: right;
+		text-align: left;
+		width: 50%;
+			@include media("<=small") {
+				width: 98%;
+			}	
+	}
+	br {
+		clear: both;
+	}
+}
+
+
+.project-alt {
+	color: #fff;
+	img {
+		float: right;
+		width: 40%;
+			@include media("<=small") {
+				width: 98%;
+			}
+	}
+	p {
+		float: left;
+		text-align: left;
+		width: 50%;
+			@include media("<=small") {
+				width: 98%;
+			}
+	}
+	
+	
+	h2 {
+		float: left;
+		text-align: left;
+		width: 50%;
+			@include media("<=small") {
+				width: 98%;
+			}	
+	}
+	br {
+		clear: both;
+	}
+}
+
+.project-ttl {
+	color: #fff;
+	font-size: 2em;
+	font-family: 'gothic';
+	height: 49px;
+	text-align: center;
+
+}
+
+.project-line {
+	background: url(../images/line.png) repeat-x top;
+	height: 49px;
+	margin: 60px;
+	
+		@include media("<=small") {
+			height: 10px;
+			margin: 0px;
+		}	
+}
+
+.project-desc {
+	color: #fff;
+	z-index: 2002;	
+	h2 {
+		font-size: 24px;
+		font-weight: regular;
+		margin: 0;
+		padding: 0 0 20px 0;
+		}	
+	}
+	
+	span {
+		padding: 7px;
+		background: #fff;
+		border-radius: 10px;
+		color: #7b889c;
+		margin: 20px 10px 0 10px;
+		font-size: 0.7em;
+		font-weight: bold;
+		
+		&:first-child { 
+			margin: 20px 10px 0 0;
+		}
+	}
+
+.portfolio-entry {
+	margin: 0 0 260px 0;
+	z-index: 2001;
+	//img {
+	//	width: 90%;
+	//	@include media("<=small") {
+	//		width: 100%;
+	//	}
+	// }
+	@include media("<=small") {
+		margin: 0 0 180px 0;
+		&:first-child { padding-top: 65px; }
+		}	
+}
+
+
+
+
+

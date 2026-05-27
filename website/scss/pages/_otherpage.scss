@@ -1,0 +1,107 @@
+.page-simple {
+  max-width: 900px;
+  padding-bottom: 2rem;
+
+  h2 {
+    text-align: center;
+    //margin: 1rem 0;
+  }
+}
+
+.page-graphic {
+  img,
+  svg {
+    max-height: 250px;
+    @include media("<=small") {
+      max-height: 120px;
+    }
+  }
+}
+
+.claims-banner {
+  text-align: center;
+  color: white;
+
+  h1 {
+    color: white;
+
+    span {
+      color: $green;
+    }
+  }
+
+  img {
+    max-width: 150px;
+    max-height: 155px;
+    padding: 1rem;
+  }
+}
+
+.claims-partners {
+  color: $grey-dark;
+  font-size: 26px;
+  text-align: center;
+  font-family: $brand-font-light;
+
+  h4 {
+    max-width: 800px;
+    margin: 1rem auto 2rem;
+  }
+
+  span {
+    color: $green;
+  }
+
+  .svg-white {
+    svg {
+      max-width: 200px;
+      width: 100%;
+      fill: $white;
+    }
+  }
+}
+
+.svg-grey {
+  a {
+    margin-top: 1.5rem;
+
+    svg {
+      max-height: 60px;
+      fill: $grey-dark;
+      margin: 0 auto;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+}
+
+.nuera-management-logo {
+  width: 100%;
+  max-width: 160px;
+}
+
+.request-demo {
+  color: white;
+}
+
+.green-box {
+  background: $green;
+  color: white;
+  padding: 0.75rem 2rem;
+  height: 100%;
+}
+
+.property-partner-logo {
+  max-height: 80px;
+  margin: 10px 20px 10px 0;
+}
+// login button
+#MainContentPlaceHolder_LoginControl_Submit {}
+
+.promo-steps {
+  // steps on The Brick page-graphic
+  padding-bottom: 12px;
+
+}

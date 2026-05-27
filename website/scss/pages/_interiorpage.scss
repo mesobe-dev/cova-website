@@ -1,0 +1,114 @@
+.inside-content {
+	text-align: center;
+	
+	p {
+		line-height: 20px;
+		font-size: 14px;
+	}
+}
+
+.right {
+	text-align: right !important;
+	padding-top: 0px !important;
+	margin-top: 0px !important;
+}
+
+.faq {
+	
+	p {
+		font-size: 14px;
+		line-height: 18px;
+	}
+}
+
+.subnav {
+	margin: 10px 0 0 0;
+	
+	ul{
+		padding: 0px 2px 0px 0px;
+    	list-style: none;
+    	margin: 0;
+
+		
+		li{
+			display: inline;
+			font-size: 14px;
+			font-weight: bold;
+			padding: 0 10px 20px 10px;
+			
+			@include media("<=small") {
+				padding: 0 15px 20px 5px;			
+			}
+			
+		}
+	}
+}
+.bio {
+	background-color: #fff;
+	text-align: left;
+	padding: 10px 0 0 10px;
+	
+	p{
+		font-size: 14px;
+	}
+	img { padding: 10px 0 10px 0;
+		@include media("<=small") {
+			text-align: center;	
+		}
+	
+	}
+			
+	}
+
+.bio-alt {
+	background-color: #F6F6F6;
+	text-align: left;
+	padding: 10px 0 0 10px;
+	
+		p{
+		font-size: 14px;
+	}
+	
+	img { padding: 10px 0 10px 0;}
+}
+
+.bio-ttl {
+	padding: 20px 0 0 0;
+	text-align: center;
+}
+
+.articles {
+	
+	p {
+		font-size: 14px;
+		line-heght: 18px;
+	}
+	
+	h4 {
+		font-size: 18px;
+	}
+	
+	a:link, a:visited {
+	  background-color: $red;
+	  color: $white;
+	  border: none;
+	  font-weight: bold;	
+	  border-radius: 5px;
+	  padding: 5px 10px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  margin: 10px 0 10px 0;
+	}
+
+	a:hover, a:active {
+	  text-decoration: underline;
+	}
+	
+}
+
+.alone {
+	p {
+		padding-bottom: 10px;
+	}
+}
