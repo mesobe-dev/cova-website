@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COVA multimedia</title>
+
+<!--
+       / \      _-'
+     _/|  \-''- _ /
+__-' { |          \
+    /             \
+    /       "o.  |o"}    Hello! Thanks for peeking under the hood.
+    |            \ ;
+     _            ',
+       \_         __\
+         ''-_    \.//
+           / '-____'
+          /
+        _'
+      _-'
+-->
+
+<!-- Using your existing styles so the visual language stays consistent -->
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/custom.css" rel="stylesheet" type="text/css">
+
+<style>
+/* ============================================
+   Clean, maintainable animation system
+   ============================================ */
+
+:root {
+  --fade-duration: 1900ms;
+  --base-delay: 800ms;
+}
+
+/* Preloader - keeping similar look to original */
+.se-pre-con {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(images/pre-loaders/64/Preloader_8.gif) center no-repeat #fff;
+  transition: opacity 400ms ease;
+}
+
+.se-pre-con.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Header fade behavior (similar spirit to original) */
+#fadeDiv {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+#fadeDiv.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Portfolio cards - clean reusable system */
+.portfolio-card {
+  background: rgba(0, 0, 0, 0.6);
+  margin: 8px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: background-color 0.5s ease, transform 0.3s ease;
+}
+
+.portfolio-card:hover {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+.portfolio-card .inner {
+  margin: 10px;
+}
+
+.portfolio-card h1 {
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  padding: 15px 0;
+  margin: 0;
+}
+
+.portfolio-card .cust-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.portfolio-card .cust-list li {
+  background-image: url('images/chevron.png');
+  background-repeat: no-repeat;
+  background-position: 0 9px;
+  padding-left: 15px;
+  padding-bottom: 7px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: .97rem;
+}
+
+.sticky-but {
+  padding: 5px 8px;
+  font-size: .6rem;
+  color: #fff;
+  text-transform: uppercase;
+  background: #ac5820;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.portfolio-card.visible .sticky-but {
+  opacity: 1;
+}
+
+/* Animation for cards */
+.portfolio-card.animate-in {
+  animation: cardFadeIn var(--fade-duration) forwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Special first card link reveal */
+.portfolio-card.first .hide-link {
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.portfolio-card.first.visible .hide-link {
+  opacity: 1;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="se-pre-con" id="preloader"></div>
+
+<!-- Header -->
+<header class="logo-place" id="fadeDiv" style="margin-bottom: 40px;">
+  <img src="images/cova-logo.svg" alt="COVA">
+</header>
+
+<div class="container" id="port-list" style="margin-top: 140px;">
+  <div class="row">
+
+    <!-- Card 1 - Special first card with delayed link -->
+    <div class="col-md-4">
+      <div class="portfolio-card first" data-delay="2800" id="card-1">
+        <div class="inner">
+          <a class="hide-link" href="index02.html">
+            <img src="images/port/CK-software.svg" style="width: 100%;" alt="">
+            <h1>KC Software</h1>
+            <ul class="cust-list">
+              <li>logo design</li>
+              <li>Print design</li>
+              <li>Web design &amp; development</li>
+              <li>WordPress cms integration</li>
+            </ul>
+            <div class="sticky-but">View Project</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="portfolio-card" data-delay="3265" id="card-2">
+        <div class="inner">
+          <img src="images/port/foundation.png" style="width: 100%;" alt="">
+          <h1>Foundation Real Estate CRM</h1>
+          <ul class="cust-list">
+            <li>Web design &amp; development</li>
+            <li>Wordpress CMS integration</li>
+          </ul>
+          <div class="sticky-but">View Project</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="portfolio-card" data-delay="3730" id="card-3">
+        <div class="inner">
+          <img src="images/port/thermal-systems.png" style="width: 100%;" alt="">
+          <h1>Thermal Systems</h1>
+          <ul class="cust-list">
+            <li>Web design &amp; development</li>
+            <li>Wordpress CMS integration</li>
+          </ul>
+          <div class="sticky-but">View Project</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-md-4">
+      <div class="portfolio-card" data-delay="4195" id="card-4">
+        <div class="inner">
+          <img src="images/port/mopspot.png" style="width: 100%;" alt="">
+          <h1>MopSpot</h1>
+          <ul class="cust-list">
+            <li>Funnel &amp; UI / UX</li>
+            <li>Icon design</li>
+          </ul>
+          <div class="sticky-but">View Project</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-md-4">
+      <div class="portfolio-card" data-delay="4660" id="card-5">
+        <div class="inner">
+          <img src="images/port/valt.png" style="width: 100%;" alt="">
+          <h1>Valt Real Estate Exchange</h1>
+          <ul class="cust-list">
+            <li>Funnel UI / ux design</li>
+            <li>Wordpress CMS integration</li>
+            <li>Web design &amp; development</li>
+          </ul>
+          <div class="sticky-but">View Project</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-md-4">
+      <div class="portfolio-card" data-delay="5125" id="card-6">
+        <div class="inner">
+          <img src="images/port/valet.png" style="width: 100%;" alt="">
+          <h1>Valet Financial</h1>
+          <ul class="cust-list">
+            <li>Web design &amp; development</li>
+            <li>Wordpress CMS integration</li>
+            <li>Logo design</li>
+          </ul>
+          <div class="sticky-but">View Project</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ============================================
+// Clean animation system for index02.html
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const preloader = document.getElementById('preloader');
+  const header = document.getElementById('fadeDiv');
+  const cards = document.querySelectorAll('.portfolio-card');
+
+  // Preloader fade out (similar timing feel to original)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+    }, 800);
+  });
+
+  // Header fade in
+  setTimeout(() => {
+    header.classList.add('visible');
+  }, 600);
+
+  // Staggered card animations using data-delay
+  // This is much cleaner than the original duplicate ID + magic number approach
+  cards.forEach(card => {
+    const delay = parseInt(card.dataset.delay) || 2000;
+
+    setTimeout(() => {
+      card.classList.add('animate-in');
+
+      // Special behavior for the first card (delayed link reveal)
+      if (card.classList.contains('first')) {
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, 1800); // extra delay for the link, similar to your 6055ms intent
+      } else {
+        // Normal cards just become visible
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, 600);
+      }
+    }, delay);
+  });
+
+  // Optional: Simple scroll behavior for header (kept light)
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      header.style.opacity = '0.3';
+    } else {
+      header.style.opacity = '1';
+    }
+    lastScroll = currentScroll;
+  });
+});
+</script>
+
+</body>
+</html>
