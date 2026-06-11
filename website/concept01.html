@@ -27,6 +27,7 @@
         }
 
         .overlay-strip {
+            --strip-padding: 60px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Crect x='6' y='4' width='1' height='5' fill='rgba(0,0,0,0.45)'/%3E%3Crect x='4' y='6' width='5' height='1' fill='rgba(0,0,0,0.45)'/%3E%3C/svg%3E");
             background-size: 13px 13px;
             background-position: 0 0;
@@ -54,6 +55,7 @@
             flex: 0 0 324px;
             position: relative;
             z-index: 1;
+            isolation: isolate;
             transition: transform 0.15s ease;
             border: 2px solid #000;
         }
@@ -61,15 +63,28 @@
         .portfolio-block::before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
+            top: calc(-1 * var(--strip-padding, 60px));
+            bottom: calc(-1 * var(--strip-padding, 60px));
             left: calc(var(--half-gap, 0px) * -1);
             width: calc(100% + var(--half-gap, 0px) * 2);
             background-color: #000;
             opacity: 0;
             transition: opacity 0.2s ease;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
+        }
+
+        .portfolio-block-media {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .portfolio-block-caption {
+            position: relative;
+            z-index: 2;
         }
         
         .portfolio-block:hover {
@@ -121,15 +136,15 @@
                         
                     <!-- Block 1 -->
                     <div onclick="showProjectModal(0)" 
-                         class="portfolio-block group relative cursor-pointer border border-white/10 bg-cover bg-center"
-                         style="background-image: url('https://picsum.photos/id/1018/800/600')">
+                         class="portfolio-block group relative cursor-pointer border border-white/10">
+                        <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
                         
                         <div class="corner-bracket corner-bracket-tl"></div>
                         <div class="corner-bracket corner-bracket-tr"></div>
                         <div class="corner-bracket corner-bracket-bl"></div>
                         <div class="corner-bracket corner-bracket-br"></div>
 
-                        <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                        <div class="portfolio-block-caption absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
                             <div class="block bg-black/90 px-3 py-1 w-fit">
                                 <div class="text-base font-medium tracking-tight">Drone Photography</div>
                             </div>
@@ -141,15 +156,15 @@
 
                     <!-- Block 2 -->
                     <div onclick="showProjectModal(1)" 
-                         class="portfolio-block group relative cursor-pointer border border-white/10 bg-cover bg-center"
-                         style="background-image: url('https://picsum.photos/id/160/800/600')">
+                         class="portfolio-block group relative cursor-pointer border border-white/10">
+                        <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
                         
                         <div class="corner-bracket corner-bracket-tl"></div>
                         <div class="corner-bracket corner-bracket-tr"></div>
                         <div class="corner-bracket corner-bracket-bl"></div>
                         <div class="corner-bracket corner-bracket-br"></div>
 
-                        <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                        <div class="portfolio-block-caption absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
                             <div class="block bg-black/90 px-3 py-1 w-fit">
                                 <div class="text-base font-medium tracking-tight">Interactive Systems</div>
                             </div>
@@ -161,15 +176,15 @@
 
                     <!-- Block 3 -->
                     <div onclick="showProjectModal(2)" 
-                         class="portfolio-block group relative cursor-pointer border border-white/10 bg-cover bg-center"
-                         style="background-image: url('https://picsum.photos/id/201/800/600')">
+                         class="portfolio-block group relative cursor-pointer border border-white/10">
+                        <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
                         
                         <div class="corner-bracket corner-bracket-tl"></div>
                         <div class="corner-bracket corner-bracket-tr"></div>
                         <div class="corner-bracket corner-bracket-bl"></div>
                         <div class="corner-bracket corner-bracket-br"></div>
 
-                        <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                        <div class="portfolio-block-caption absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
                             <div class="block bg-black/90 px-3 py-1 w-fit">
                                 <div class="text-base font-medium tracking-tight">Brand &amp; Print</div>
                             </div>
