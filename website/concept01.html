@@ -31,19 +31,19 @@
         }
 
         .portfolio-grid {
-            --edge-padding: 2rem;
+            --column-gap: 2.5rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: flex-start;
+            gap: var(--column-gap);
             width: 100%;
-            padding: 0 var(--edge-padding);
+            padding: 0 var(--column-gap);
         }
 
         @media (max-width: 1100px) {
             .portfolio-grid {
                 flex-direction: column;
                 align-items: center;
-                gap: 2rem;
             }
         }
 
