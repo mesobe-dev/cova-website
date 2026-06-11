@@ -12,18 +12,51 @@
             font-family: 'Inter', system_ui, sans-serif;
         }
 
+        body.is-loading {
+            background-color: #fff;
+        }
+
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background-color: #fff;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+            pointer-events: all;
+        }
+
+        .preloader.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .page-bg {
             background-image: url('https://cova.ca/images/concept_bg.jpg');
             background-size: cover;
             background-position: center 30%;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            animation: photoLensLoad 1.6s cubic-bezier(0.23, 1.0, 0.32, 1) forwards;
+            opacity: 0;
+            transition: opacity 1.2s ease;
         }
 
-        @keyframes photoLensLoad {
-            from { filter: blur(8px) brightness(0.75); }
-            to { filter: blur(0) brightness(1); }
+        .page-bg.is-visible {
+            opacity: 1;
+        }
+
+        .page-content {
+            opacity: 0;
+            filter: blur(8px) brightness(0.75);
+        }
+
+        .page-content.is-revealed {
+            animation: contentLensLoad 1.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        @keyframes contentLensLoad {
+            from { opacity: 0; filter: blur(8px) brightness(0.75); }
+            to { opacity: 1; filter: blur(0) brightness(1); }
         }
 
         .overlay-strip {
@@ -123,10 +156,12 @@
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-white overflow-x-hidden">
+<body class="is-loading bg-zinc-950 text-white overflow-x-hidden">
+    <div id="preloader" class="preloader" aria-hidden="true"></div>
+
     <div class="page-bg min-h-screen w-full flex items-center justify-center">
         
-        <div class="w-full">
+        <div id="page-content" class="page-content w-full">
             
             <!-- Logo -->
             <div class="flex justify-center mb-10">
@@ -372,6 +407,51 @@
             input.value = '';
         }
 
+        const PRELOAD_ASSETS = [
+            'https://cova.ca/images/concept_bg.jpg',
+            'https://cova.ca/images/cova-logo.svg',
+            'https://picsum.photos/id/1018/800/600',
+            'https://picsum.photos/id/160/800/600',
+            'https://picsum.photos/id/201/800/600'
+        ];
+
+        function preloadAsset(src) {
+            return new Promise(function(resolve) {
+                const img = new Image();
+                img.onload = resolve;
+                img.onerror = resolve;
+                img.src = src;
+            });
+        }
+
+        function whenPageReady() {
+            return new Promise(function(resolve) {
+                if (document.readyState === 'complete') {
+                    resolve();
+                } else {
+                    window.addEventListener('load', resolve, { once: true });
+                }
+            });
+        }
+
+        function startIntroSequence() {
+            const preloader = document.getElementById('preloader');
+            const pageBg = document.querySelector('.page-bg');
+            const pageContent = document.getElementById('page-content');
+
+            document.body.classList.remove('is-loading');
+            preloader.classList.add('is-hidden');
+            pageBg.classList.add('is-visible');
+
+            setTimeout(function() {
+                pageContent.classList.add('is-revealed');
+                updateThumbnailHalfGap();
+            }, 1000);
+        }
+
+        Promise.all(PRELOAD_ASSETS.map(preloadAsset).concat([whenPageReady()]))
+            .then(startIntroSequence);
+
         function updateThumbnailHalfGap() {
             const grid = document.querySelector('.portfolio-grid');
             const blocks = grid.querySelectorAll('.portfolio-block');
@@ -385,8 +465,6 @@
         }
 
         window.addEventListener('resize', updateThumbnailHalfGap);
-        window.addEventListener('load', updateThumbnailHalfGap);
-        updateThumbnailHalfGap();
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
