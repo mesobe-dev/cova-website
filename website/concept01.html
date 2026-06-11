@@ -57,8 +57,8 @@
             position: relative;
             z-index: 1;
             isolation: isolate;
-            overflow: hidden;
-            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: visible;
+            transition: transform 0.15s ease;
             border: 2px solid #000;
         }
 
@@ -71,23 +71,9 @@
             width: calc(100% + var(--half-gap, 0px) * 2);
             background-color: #000;
             opacity: 0;
-            transition: opacity 0.25s ease;
+            transition: opacity 0.2s ease;
             pointer-events: none;
             z-index: 0;
-        }
-
-        .portfolio-block::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            opacity: 0;
-            background:
-                radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 42%),
-                radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.3) 100%);
-            mix-blend-mode: soft-light;
-            transition: opacity 0.5s ease;
         }
 
         .portfolio-block-media {
@@ -96,14 +82,11 @@
             z-index: 1;
             background-size: cover;
             background-position: center;
-            transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1),
-                        filter 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-            filter: brightness(0.92) saturate(0.88) blur(0.4px);
         }
 
         .portfolio-block-caption {
             position: relative;
-            z-index: 3;
+            z-index: 2;
         }
         
         .portfolio-block:hover {
@@ -111,14 +94,8 @@
             z-index: 2;
         }
 
-        .portfolio-block:hover::before,
-        .portfolio-block:hover::after {
+        .portfolio-block:hover::before {
             opacity: 1;
-        }
-
-        .portfolio-block:hover .portfolio-block-media {
-            transform: scale(1.1);
-            filter: brightness(1.18) contrast(1.06) saturate(1.22) blur(0);
         }
 
         .corner-bracket {
