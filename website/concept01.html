@@ -27,7 +27,8 @@
         }
 
         .overlay-strip {
-            --strip-padding: 60px;
+            --strip-padding: 123px;
+            padding: var(--strip-padding) 0;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Crect x='6' y='4' width='1' height='5' fill='rgba(0,0,0,0.45)'/%3E%3Crect x='4' y='6' width='5' height='1' fill='rgba(0,0,0,0.45)'/%3E%3C/svg%3E");
             background-size: 13px 13px;
             background-position: 0 0;
@@ -37,7 +38,7 @@
         .portfolio-grid {
             display: flex;
             justify-content: space-evenly;
-            align-items: flex-start;
+            align-items: center;
             width: 100%;
             overflow: visible;
         }
@@ -56,22 +57,37 @@
             position: relative;
             z-index: 1;
             isolation: isolate;
-            transition: transform 0.15s ease;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
             border: 2px solid #000;
         }
 
         .portfolio-block::before {
             content: '';
             position: absolute;
-            top: calc(-1 * var(--strip-padding, 60px));
-            bottom: calc(-1 * var(--strip-padding, 60px));
+            top: calc(-1 * var(--strip-padding, 123px));
+            bottom: calc(-1 * var(--strip-padding, 123px));
             left: calc(var(--half-gap, 0px) * -1);
             width: calc(100% + var(--half-gap, 0px) * 2);
             background-color: #000;
             opacity: 0;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.25s ease;
             pointer-events: none;
             z-index: 0;
+        }
+
+        .portfolio-block::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+            background:
+                radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 42%),
+                radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.3) 100%);
+            mix-blend-mode: soft-light;
+            transition: opacity 0.5s ease;
         }
 
         .portfolio-block-media {
@@ -80,11 +96,14 @@
             z-index: 1;
             background-size: cover;
             background-position: center;
+            transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1),
+                        filter 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: brightness(0.92) saturate(0.88) blur(0.4px);
         }
 
         .portfolio-block-caption {
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
         
         .portfolio-block:hover {
@@ -92,8 +111,14 @@
             z-index: 2;
         }
 
-        .portfolio-block:hover::before {
+        .portfolio-block:hover::before,
+        .portfolio-block:hover::after {
             opacity: 1;
+        }
+
+        .portfolio-block:hover .portfolio-block-media {
+            transform: scale(1.1);
+            filter: brightness(1.18) contrast(1.06) saturate(1.22) blur(0);
         }
 
         .corner-bracket {
@@ -131,7 +156,7 @@
                 <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-20 md:h-24 w-auto">
             </div>
 
-            <div class="overlay-strip w-full py-[60px]">
+            <div class="overlay-strip w-full">
                 <div class="portfolio-grid">
                         
                     <!-- Block 1 -->
