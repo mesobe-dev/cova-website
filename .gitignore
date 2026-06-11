@@ -43,6 +43,9 @@ logs/
 *.bak
 
 # === Misc ===
+# Local MCP tool descriptors (not part of the website)
+mcps/
+
 # Uncomment if you want to ignore environment files
 # .env
 # .env.local

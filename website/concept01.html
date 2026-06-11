@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C·O·V·A • Multimedia — Portfolio Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .page-bg {
+            background-image: url('https://cova.ca/images/concept_bg.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: photoLensLoad 1.6s cubic-bezier(0.23, 1.0, 0.32, 1) forwards;
+        }
+
+        @keyframes photoLensLoad {
+            from { filter: blur(8px) brightness(0.75); }
+            to { filter: blur(0) brightness(1); }
+        }
+
+        .dotted-strip {
+            background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+            background-size: 18px 18px;
+            background-position: 0 0;
+        }
+
+        .portfolio-block {
+            transition: transform 0.15s ease;
+            border: 2px solid #000;
+        }
+        
+        .portfolio-block:hover {
+            transform: translateY(-2px);
+        }
+
+        .corner-bracket {
+            position: absolute;
+            width: 18px;           /* Match dot grid */
+            height: 18px;
+            border: 2px solid #111;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Outside chevrons - positioned to snap to 18px grid */
+        .corner-bracket-tl { top: -9px; left: -9px; border-right: none; border-bottom: none; }
+        .corner-bracket-tr { top: -9px; right: -9px; border-left: none; border-bottom: none; }
+        .corner-bracket-bl { bottom: -9px; left: -9px; border-right: none; border-top: none; }
+        .corner-bracket-br { bottom: -9px; right: -9px; border-left: none; border-top: none; }
+
+        .modal {
+            animation: modalPop 0.2s ease-out forwards;
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.96) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white overflow-x-hidden">
+    <div class="page-bg min-h-screen w-full flex items-center justify-center">
+        
+        <div class="w-full">
+            
+            <!-- Logo -->
+            <div class="flex justify-center mb-10">
+                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-20 md:h-24 w-auto">
+            </div>
+
+            <!-- Dotted strip -->
+            <div class="dotted-strip w-full py-[60px]">
+                <div class="px-16 max-w-[1600px] mx-auto">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <!-- Block 1 -->
+                        <div onclick="showProjectModal(0)" 
+                             class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
+                             style="background-image: url('https://picsum.photos/id/1018/800/600')">
+                            
+                            <div class="corner-bracket corner-bracket-tl"></div>
+                            <div class="corner-bracket corner-bracket-tr"></div>
+                            <div class="corner-bracket corner-bracket-bl"></div>
+                            <div class="corner-bracket corner-bracket-br"></div>
+
+                            <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                                <div class="block bg-black/90 px-3 py-1 w-fit">
+                                    <div class="text-base font-medium tracking-tight">Drone Photography</div>
+                                </div>
+                                <div class="block bg-black/90 px-3 py-1 w-fit">
+                                    <div class="text-[10px] text-white/55 tracking-[0.5px]">AERIAL • CINEMATIC • PROPERTY</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Block 2 -->
+                        <div onclick="showProjectModal(1)" 
+                             class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
+                             style="background-image: url('https://picsum.photos/id/160/800/600')">
+                            
+                            <div class="corner-bracket corner-bracket-tl"></div>
+                            <div class="corner-bracket corner-bracket-tr"></div>
+                            <div class="corner-bracket corner-bracket-bl"></div>
+                            <div class="corner-bracket corner-bracket-br"></div>
+
+                            <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                                <div class="block bg-black/90 px-3 py-1 w-fit">
+                                    <div class="text-base font-medium tracking-tight">Interactive Systems</div>
+                                </div>
+                                <div class="block bg-black/90 px-3 py-1 w-fit">
+                                    <div class="text-[10px] text-white/55 tracking-[0.5px]">UI/UX • AGENT INTERFACES • PROTOTYPING</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Block 3 -->
+                        <div onclick="showProjectModal(2)" 
+                             class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
+                             style="background-image: url('https://picsum.photos/id/201/800/600')">
+                            
+                            <div class="corner-bracket corner-bracket-tl"></div>
+                            <div class="corner-bracket corner-bracket-tr"></div>
+                            <div class="corner-bracket corner-bracket-bl"></div>
+                            <div class="corner-bracket corner-bracket-br"></div>
+
+                            <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                                <div class="block bg-black/90 px-3 py-1 w-fit">
+                                    <div class="text-base font-medium tracking-tight">Brand &amp; Print</div>
+                                </div>
+                                <div class="block bg-black/90 px-3 py-1 w-fit">
+                                    <div class="text-[10px] text-white/55 tracking-[0.5px]">IDENTITY • COLLATERAL • DIGITAL</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="modal" onclick="if (event.target.id === 'modal') hideModal()" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-6">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="modal bg-zinc-900 border border-white/10 max-w-[620px] w-full overflow-hidden">
+            
+            <div class="px-8 pt-8 pb-6 flex justify-between items-start border-b border-white/10">
+                <div>
+                    <div id="modal-title" class="text-2xl font-semibold tracking-tight"></div>
+                    <div id="modal-subtitle" class="text-sm text-white/60 mt-1"></div>
+                </div>
+                <button onclick="hideModal()" 
+                        class="text-white/60 hover:text-white text-3xl leading-none mt-1">&times;</button>
+            </div>
+
+            <div class="px-8 py-8" id="modal-body"></div>
+
+            <div class="px-8 py-5 bg-zinc-950/70 border-t border-white/10 flex justify-end gap-3">
+                <button onclick="hideModal()" 
+                        class="px-6 py-2 text-sm rounded border border-white/20 hover:bg-white/5 transition-colors">CLOSE</button>
+                <button id="demo-btn" onclick="launchInteractiveDemo()" 
+                        class="hidden px-6 py-2 text-sm bg-white text-black font-medium hover:bg-white/90 transition-colors">
+                    LAUNCH INTERACTIVE DEMO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const projects = [
+            {
+                id: 0,
+                title: "Drone Photography",
+                subtitle: "Aerial Cinematography & Stills",
+                description: "High-end drone photography and video for luxury property marketing across the Kootenays and Alberta Rockies. Emphasis on atmospheric conditions, golden hour flights, and precise real-estate storytelling.",
+                tags: ["DJI Mavic 3 Pro", "4K Cinematic", "Property Marketing", "Color Grading"],
+                details: "Delivered 40+ hero assets and short films for active listings and print campaigns. Focus on the quiet, moody beauty of Western Canada landscapes."
+            },
+            {
+                id: 1,
+                title: "Interactive Systems",
+                subtitle: "UI/UX & Agent Interfaces",
+                description: "Custom web interfaces and AI-powered agent experiences built with modern frameworks and structured content. Clean, functional design with strong performance and accessibility.",
+                tags: ["Next.js / Tailwind", "Agent UI", "Prototyping", "Figma → Code"],
+                details: "Projects include calm, high-performance interfaces for content operations and client tools. Emphasis on micro-interactions without visual noise."
+            },
+            {
+                id: 2,
+                title: "Brand & Print Design",
+                subtitle: "Identity Systems & Collateral",
+                description: "Complete brand systems from logo, typography, and color through to print materials, packaging, and digital extensions. Cohesive across physical and digital touchpoints.",
+                tags: ["Logo & Identity", "Print Collateral", "Packaging", "Brand Guidelines"],
+                details: "Full rebrands and ongoing asset systems for boutique developments and creative studios. Print-ready files and production support."
+            }
+        ];
+
+        let currentProject = null;
+
+        function showProjectModal(index) {
+            const project = projects[index];
+            currentProject = project;
+
+            const modal = document.getElementById('modal');
+            const titleEl = document.getElementById('modal-title');
+            const subtitleEl = document.getElementById('modal-subtitle');
+            const bodyEl = document.getElementById('modal-body');
+            const demoBtn = document.getElementById('demo-btn');
+
+            titleEl.textContent = project.title;
+            subtitleEl.textContent = project.subtitle;
+
+            let bodyHTML = `
+                <p class="text-white/90 leading-relaxed mb-6">${project.description}</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    ${project.tags.map(tag => `<span class="text-xs px-3 py-1 bg-white/5 border border-white/10 text-white/70">${tag}</span>`).join('')}
+                </div>
+                <div class="text-sm text-white/80">${project.details}</div>
+            `;
+
+            if (index === 1) {
+                bodyHTML += `
+                    <div class="mt-8 pt-6 border-t border-white/10">
+                        <div class="text-xs uppercase tracking-widest text-emerald-400 mb-1">INTERACTIVE PROTOTYPE</div>
+                        <div class="font-medium mb-3">Agent Interface Demo</div>
+                        <p class="text-sm text-white/70 mb-4">A clean, functional example of an overlaid interactive strip with aligned elements.</p>
+                        <button onclick="launchInteractiveDemo()" class="w-full py-2.5 text-sm bg-emerald-600 hover:bg-emerald-500 text-white font-medium">OPEN LIVE INTERACTIVE DEMO</button>
+                    </div>
+                `;
+                demoBtn.classList.add('hidden');
+            } else {
+                demoBtn.classList.add('hidden');
+            }
+
+            bodyEl.innerHTML = bodyHTML;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function hideModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            const body = document.getElementById('modal-body');
+            if (body.querySelector('#interactive-demo')) body.innerHTML = '';
+        }
+
+        function launchInteractiveDemo() {
+            const body = document.getElementById('modal-body');
+            const demoBtn = document.getElementById('demo-btn');
+            if (demoBtn) demoBtn.style.display = 'none';
+
+            body.innerHTML = `
+                <div id="interactive-demo">
+                    <div class="flex justify-between items-baseline mb-4">
+                        <span class="text-xs tracking-widest text-white/60">INTERACTIVE PROTOTYPE</span>
+                        <span class="text-[10px] px-2.5 py-px bg-white/10 text-white/70">CENTERED • ALIGNED</span>
+                    </div>
+
+                    <div class="bg-zinc-950 border border-white/10 p-4 mb-4 space-y-2">
+                        <button onclick="useDemoQuestion(this)" class="w-full text-left px-4 py-3 text-sm bg-white/5 hover:bg-white/10 border border-white/10">HOW DO I ALIGN THUMBNAILS WITH A DOTTED PATTERN?</button>
+                        <button onclick="useDemoQuestion(this)" class="w-full text-left px-4 py-3 text-sm bg-white/5 hover:bg-white/10 border border-white/10">HOW DO I CENTER CONTENT VERTICALLY?</button>
+                        <button onclick="useDemoQuestion(this)" class="w-full text-left px-4 py-3 text-sm bg-white/5 hover:bg-white/10 border border-white/10">WHAT MAKES A GOOD OVERLAID STRIP?</button>
+                    </div>
+
+                    <div class="flex bg-zinc-950 border border-white/10 px-4">
+                        <input id="demo-input" type="text" placeholder="ASK A QUESTION ABOUT THE DESIGN..." class="flex-1 bg-transparent text-sm py-3 focus:outline-none">
+                        <button onclick="sendDemoMessage()" class="px-4 text-white/70 hover:text-white">↑</button>
+                    </div>
+
+                    <div id="demo-response" class="hidden mt-4 text-sm bg-zinc-950 border border-white/10 p-4 text-white/80"></div>
+                </div>
+            `;
+
+            setTimeout(() => {
+                const input = document.getElementById('demo-input');
+                if (input) input.focus();
+            }, 50);
+        }
+
+        function useDemoQuestion(el) {
+            const input = document.getElementById('demo-input');
+            if (input) {
+                input.value = el.textContent.trim();
+                input.focus();
+            }
+        }
+
+        function sendDemoMessage() {
+            const input = document.getElementById('demo-input');
+            const responseBox = document.getElementById('demo-response');
+            if (!input || !responseBox) return;
+
+            const val = input.value.trim();
+            if (!val) return;
+
+            let reply = "Thanks. A subtle dot pattern with full-white dots on a transparent strip lets the background photo show through while keeping the blocks clearly defined.";
+
+            const lower = val.toLowerCase();
+            if (lower.includes('align') || lower.includes('dotted') || lower.includes('pattern')) {
+                reply = "Use the same background-size on the container and make sure block dimensions and positioning are multiples of that size. The dots then line up perfectly at the edges.";
+            } else if (lower.includes('center') || lower.includes('vertically')) {
+                reply = "Wrap the content in a flex container with min-h-screen and use items-center justify-center. The strip then sits naturally in the vertical center of the viewport.";
+            } else if (lower.includes('strip') || lower.includes('overlaid')) {
+                reply = "A transparent or low-opacity dotted layer over a full-bleed photo creates depth. Keep the blocks solid and sharp so they stand out cleanly against the background.";
+            }
+
+            responseBox.innerHTML = `<div class="text-emerald-400 text-xs mb-1">RESPONSE</div>${reply}`;
+            responseBox.classList.remove('hidden');
+            input.value = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('modal');
+                if (!modal.classList.contains('hidden')) hideModal();
+            }
+            if (e.key === 'Enter') {
+                const input = document.getElementById('demo-input');
+                if (input && document.activeElement === input) {
+                    e.preventDefault();
+                    sendDemoMessage();
+                }
+            }
+        });
+
+        console.log('%c[C·O·V·A Preview] Updated for better dot grid alignment (18px chevrons + 324px blocks).', 'color:#555');
+    </script>
+</body>
+</html>
