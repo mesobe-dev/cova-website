@@ -68,8 +68,13 @@
             to { opacity: 1; filter: blur(0) brightness(1); }
         }
 
+        .site-tabs {
+            min-height: 0;
+        }
+
         .overlay-strip {
             --strip-padding: 123px;
+            margin-top: 70px;
             padding: var(--strip-padding) 0;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Crect x='6' y='4' width='1' height='5' fill='rgba(0,0,0,0.45)'/%3E%3Crect x='4' y='6' width='5' height='1' fill='rgba(0,0,0,0.45)'/%3E%3C/svg%3E");
             background-size: 13px 13px;
@@ -175,9 +180,11 @@
         <div id="page-content" class="page-content w-full">
             
             <!-- Logo -->
-            <div class="flex justify-center mb-10">
-                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-10 md:h-12 w-auto">
+            <div class="flex justify-center">
+                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-[50px] md:h-[60px] w-auto">
             </div>
+
+            <nav class="site-tabs" aria-label="Sections"></nav>
 
             <div class="overlay-strip w-full">
                 <div class="portfolio-grid">
