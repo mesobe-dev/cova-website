@@ -20,10 +20,19 @@
             position: fixed;
             inset: 0;
             z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: #fff;
             opacity: 1;
             transition: opacity 0.8s ease;
             pointer-events: all;
+        }
+
+        .preloader__gif {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
         }
 
         .preloader.is-hidden {
@@ -157,7 +166,9 @@
     </style>
 </head>
 <body class="is-loading bg-zinc-950 text-white overflow-x-hidden">
-    <div id="preloader" class="preloader" aria-hidden="true"></div>
+    <div id="preloader" class="preloader" aria-hidden="true">
+        <img src="https://www.cova.ca/images/pre-loaders/64/Preloader_8.gif" alt="" class="preloader__gif" width="64" height="64">
+    </div>
 
     <div class="page-bg min-h-screen w-full flex items-center justify-center">
         
@@ -408,6 +419,7 @@
         }
 
         const PRELOAD_ASSETS = [
+            'https://www.cova.ca/images/pre-loaders/64/Preloader_8.gif',
             'https://cova.ca/images/concept_bg.jpg',
             'https://cova.ca/images/cova-logo.svg',
             'https://picsum.photos/id/1018/800/600',
