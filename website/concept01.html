@@ -30,6 +30,21 @@
             background-color: rgba(0, 0, 0, 0.45);
         }
 
+        .portfolio-grid {
+            --column-gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--column-gap);
+            width: 100%;
+            padding: 0 var(--column-gap);
+        }
+
+        @media (max-width: 767px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .portfolio-block {
             transition: transform 0.15s ease;
             border: 2px solid #000;
@@ -74,72 +89,67 @@
                 <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-20 md:h-24 w-auto">
             </div>
 
-            <!-- Dotted strip -->
             <div class="overlay-strip w-full py-[60px]">
-                <div class="px-16 max-w-[1600px] mx-auto">
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="portfolio-grid">
                         
-                        <!-- Block 1 -->
-                        <div onclick="showProjectModal(0)" 
-                             class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
-                             style="background-image: url('https://picsum.photos/id/1018/800/600')">
-                            
-                            <div class="corner-bracket corner-bracket-tl"></div>
-                            <div class="corner-bracket corner-bracket-tr"></div>
-                            <div class="corner-bracket corner-bracket-bl"></div>
-                            <div class="corner-bracket corner-bracket-br"></div>
+                    <!-- Block 1 -->
+                    <div onclick="showProjectModal(0)" 
+                         class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
+                         style="background-image: url('https://picsum.photos/id/1018/800/600')">
+                        
+                        <div class="corner-bracket corner-bracket-tl"></div>
+                        <div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div>
+                        <div class="corner-bracket corner-bracket-br"></div>
 
-                            <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
-                                <div class="block bg-black/90 px-3 py-1 w-fit">
-                                    <div class="text-base font-medium tracking-tight">Drone Photography</div>
-                                </div>
-                                <div class="block bg-black/90 px-3 py-1 w-fit">
-                                    <div class="text-[10px] text-white/55 tracking-[0.5px]">AERIAL • CINEMATIC • PROPERTY</div>
-                                </div>
+                        <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                            <div class="block bg-black/90 px-3 py-1 w-fit">
+                                <div class="text-base font-medium tracking-tight">Drone Photography</div>
+                            </div>
+                            <div class="block bg-black/90 px-3 py-1 w-fit">
+                                <div class="text-[10px] text-white/55 tracking-[0.5px]">AERIAL • CINEMATIC • PROPERTY</div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Block 2 -->
-                        <div onclick="showProjectModal(1)" 
-                             class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
-                             style="background-image: url('https://picsum.photos/id/160/800/600')">
-                            
-                            <div class="corner-bracket corner-bracket-tl"></div>
-                            <div class="corner-bracket corner-bracket-tr"></div>
-                            <div class="corner-bracket corner-bracket-bl"></div>
-                            <div class="corner-bracket corner-bracket-br"></div>
+                    <!-- Block 2 -->
+                    <div onclick="showProjectModal(1)" 
+                         class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
+                         style="background-image: url('https://picsum.photos/id/160/800/600')">
+                        
+                        <div class="corner-bracket corner-bracket-tl"></div>
+                        <div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div>
+                        <div class="corner-bracket corner-bracket-br"></div>
 
-                            <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
-                                <div class="block bg-black/90 px-3 py-1 w-fit">
-                                    <div class="text-base font-medium tracking-tight">Interactive Systems</div>
-                                </div>
-                                <div class="block bg-black/90 px-3 py-1 w-fit">
-                                    <div class="text-[10px] text-white/55 tracking-[0.5px]">UI/UX • AGENT INTERFACES • PROTOTYPING</div>
-                                </div>
+                        <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                            <div class="block bg-black/90 px-3 py-1 w-fit">
+                                <div class="text-base font-medium tracking-tight">Interactive Systems</div>
+                            </div>
+                            <div class="block bg-black/90 px-3 py-1 w-fit">
+                                <div class="text-[10px] text-white/55 tracking-[0.5px]">UI/UX • AGENT INTERFACES • PROTOTYPING</div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Block 3 -->
-                        <div onclick="showProjectModal(2)" 
-                             class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
-                             style="background-image: url('https://picsum.photos/id/201/800/600')">
-                            
-                            <div class="corner-bracket corner-bracket-tl"></div>
-                            <div class="corner-bracket corner-bracket-tr"></div>
-                            <div class="corner-bracket corner-bracket-bl"></div>
-                            <div class="corner-bracket corner-bracket-br"></div>
+                    <!-- Block 3 -->
+                    <div onclick="showProjectModal(2)" 
+                         class="portfolio-block group relative cursor-pointer border border-white/10 h-[324px] bg-cover bg-center"
+                         style="background-image: url('https://picsum.photos/id/201/800/600')">
+                        
+                        <div class="corner-bracket corner-bracket-tl"></div>
+                        <div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div>
+                        <div class="corner-bracket corner-bracket-br"></div>
 
-                            <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
-                                <div class="block bg-black/90 px-3 py-1 w-fit">
-                                    <div class="text-base font-medium tracking-tight">Brand &amp; Print</div>
-                                </div>
-                                <div class="block bg-black/90 px-3 py-1 w-fit">
-                                    <div class="text-[10px] text-white/55 tracking-[0.5px]">IDENTITY • COLLATERAL • DIGITAL</div>
-                                </div>
+                        <div class="absolute bottom-0 left-0 px-5 pb-4 space-y-1 w-full">
+                            <div class="block bg-black/90 px-3 py-1 w-fit">
+                                <div class="text-base font-medium tracking-tight">Brand &amp; Print</div>
+                            </div>
+                            <div class="block bg-black/90 px-3 py-1 w-fit">
+                                <div class="text-[10px] text-white/55 tracking-[0.5px]">IDENTITY • COLLATERAL • DIGITAL</div>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
