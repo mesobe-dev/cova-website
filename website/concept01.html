@@ -26,10 +26,8 @@
             to { filter: blur(0) brightness(1); }
         }
 
-        .dotted-strip {
-            background-image: radial-gradient(circle, #fff 1px, transparent 1px);
-            background-size: 18px 18px;
-            background-position: 0 0;
+        .overlay-strip {
+            background-color: rgba(0, 0, 0, 0.45);
         }
 
         .portfolio-block {
@@ -43,14 +41,14 @@
 
         .corner-bracket {
             position: absolute;
-            width: 18px;           /* Match dot grid */
+            width: 18px;
             height: 18px;
-            border: 2px solid #111;
+            border: 2px solid #fff;
             pointer-events: none;
             z-index: 20;
         }
 
-        /* Outside chevrons - positioned to snap to 18px grid */
+        /* Outside corner brackets */
         .corner-bracket-tl { top: -9px; left: -9px; border-right: none; border-bottom: none; }
         .corner-bracket-tr { top: -9px; right: -9px; border-left: none; border-bottom: none; }
         .corner-bracket-bl { bottom: -9px; left: -9px; border-right: none; border-top: none; }
@@ -77,7 +75,7 @@
             </div>
 
             <!-- Dotted strip -->
-            <div class="dotted-strip w-full py-[60px]">
+            <div class="overlay-strip w-full py-[60px]">
                 <div class="px-16 max-w-[1600px] mx-auto">
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
