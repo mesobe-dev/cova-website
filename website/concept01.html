@@ -75,7 +75,8 @@
         .overlay-strip {
             --strip-padding: 130.5px;
             --caption-font-size: 0.75rem;
-            --title-font-size: 0.55rem;
+            --title-font-size: 0.78rem;
+            --title-bar-color: #c3b51b;
             position: relative;
             margin-top: 90px;
             padding: var(--strip-padding) 0;
@@ -160,13 +161,13 @@
             display: inline-flex;
             align-items: center;
             min-height: 1.5rem;
-            background: #c3b51b;
+            background: var(--title-bar-color);
             color: #fff;
             font-size: var(--title-font-size);
             font-weight: 500;
             letter-spacing: 0.5px;
             line-height: 1;
-            padding: 0.5em 0.65em;
+            padding: calc(0.5em + 5px) calc(0.65em + 5px);
             z-index: 3;
             white-space: nowrap;
             text-transform: uppercase;
@@ -181,8 +182,7 @@
             align-items: center;
             gap: 0.5em;
             min-height: 1.5rem;
-            padding: 0.5em 0.65em;
-            background: #c3b51b;
+            padding: calc(0.5em + 5px) 0;
             z-index: 3;
         }
 
@@ -194,7 +194,7 @@
         .portfolio-block-icon svg {
             width: var(--title-font-size);
             height: var(--title-font-size);
-            color: #fff;
+            color: var(--title-bar-color);
         }
 
         .portfolio-block-tags {
