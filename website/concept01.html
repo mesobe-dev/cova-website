@@ -523,7 +523,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer is-capturing">
+                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer is-captured">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -536,7 +536,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer is-capturing">
+                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer is-captured">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -962,7 +962,6 @@
                 siteLogo.classList.add('is-revealed');
                 pageContent.classList.add('is-revealed');
                 updateThumbnailHalfGap();
-                runCaptureSequence(document.querySelector('.portfolio-set.is-active'));
             }, 1000);
         }
 
@@ -989,7 +988,13 @@
         function runCaptureSequence(setEl) {
             if (!setEl) return;
 
+            var grid = document.getElementById('portfolio-grid');
             var blocks = setEl.querySelectorAll('.portfolio-block');
+
+            grid.classList.remove('is-capture-sequence');
+            void grid.offsetWidth;
+            grid.classList.add('is-capture-sequence');
+
             blocks.forEach(function(block) {
                 block.classList.remove('is-captured');
                 block.classList.add('is-capturing');
@@ -1001,6 +1006,11 @@
                     block.classList.remove('is-capturing');
                 }, captureHoldMs + index * captureStaggerMs);
             });
+
+            var sequenceEnd = captureHoldMs + (blocks.length - 1) * captureStaggerMs + 750;
+            setTimeout(function() {
+                grid.classList.remove('is-capture-sequence');
+            }, sequenceEnd);
         }
 
         function switchPortfolioSet(setName) {
