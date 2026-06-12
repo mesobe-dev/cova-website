@@ -95,8 +95,44 @@
             to { opacity: 1; filter: blur(0) brightness(1); }
         }
 
-        .site-tabs {
-            min-height: 0;
+        .strip-block {
+            position: relative;
+            margin-top: 90px;
+        }
+
+        .filter-tabs {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            padding: 0 20px;
+        }
+
+        .filter-tabs button {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .filter-tabs button:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-tabs button.is-active {
+            color: #fff;
+            text-decoration: underline;
+            text-underline-offset: 6px;
         }
 
         .overlay-strip {
@@ -105,7 +141,6 @@
             --title-font-size: 1rem;
             --title-bar-color: rgba(0, 0, 0, 0.9);
             position: relative;
-            margin-top: 90px;
             padding: var(--strip-padding) 0;
             overflow: visible;
         }
@@ -129,15 +164,31 @@
         .portfolio-grid {
             position: relative;
             z-index: 1;
-            display: flex;
+            width: 100%;
+            min-height: 324px;
+            overflow: visible;
+        }
+
+        .portfolio-set {
+            display: none;
             justify-content: space-evenly;
             align-items: center;
             width: 100%;
             overflow: visible;
+            animation: setIn 0.35s ease;
+        }
+
+        .portfolio-set.is-active {
+            display: flex;
+        }
+
+        @keyframes setIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 1100px) {
-            .portfolio-grid {
+            .portfolio-set.is-active {
                 flex-direction: column;
                 align-items: center;
             }
@@ -313,78 +364,187 @@
                 </svg>
             </div>
 
-            <nav class="site-tabs" aria-label="Sections"></nav>
-
             <div id="page-content" class="page-content w-full">
-            <div class="overlay-strip w-full">
-                <div class="portfolio-grid">
-                        
-                    <!-- Block 1 -->
-                    <div onclick="showProjectModal(0)" 
-                         class="portfolio-block group relative cursor-pointer border border-white/10">
-                        <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
-                        
-                        <div class="corner-bracket corner-bracket-tl"></div>
-                        <div class="corner-bracket corner-bracket-tr"></div>
-                        <div class="corner-bracket corner-bracket-bl"></div>
-                        <div class="corner-bracket corner-bracket-br"></div>
+            <div class="strip-block">
+                <nav class="filter-tabs" aria-label="Work categories">
+                    <button type="button" class="is-active" data-set="featured">featured</button>
+                    <button type="button" data-set="aerial">aerial</button>
+                    <button type="button" data-set="digital">digital</button>
+                    <button type="button" data-set="print">print</button>
+                </nav>
 
-                        <div class="portfolio-block-caption">
-                            <div class="portfolio-block-title">drone photography</div>
-                            <div class="portfolio-block-tags">
-                                <span class="portfolio-block-tag">AERIAL</span>
-                                <span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                <span class="portfolio-block-tag">CINEMATIC</span>
-                                <span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                <span class="portfolio-block-tag">PROPERTY</span>
+                <div class="overlay-strip w-full">
+                    <div class="portfolio-grid">
+
+                        <div class="portfolio-set is-active" data-set="featured">
+                            <div onclick="showProjectModal(0)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">drone photography</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">AERIAL</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">CINEMATIC</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">PROPERTY</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">interactive systems</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">UI/UX</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">AGENT INTERFACES</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">PROTOTYPING</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">brand &amp; print</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">IDENTITY</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">COLLATERAL</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">DIGITAL</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Block 2 -->
-                    <div onclick="showProjectModal(1)" 
-                         class="portfolio-block group relative cursor-pointer border border-white/10">
-                        <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
-                        
-                        <div class="corner-bracket corner-bracket-tl"></div>
-                        <div class="corner-bracket corner-bracket-tr"></div>
-                        <div class="corner-bracket corner-bracket-bl"></div>
-                        <div class="corner-bracket corner-bracket-br"></div>
-
-                        <div class="portfolio-block-caption">
-                            <div class="portfolio-block-title">interactive systems</div>
-                            <div class="portfolio-block-tags">
-                                <span class="portfolio-block-tag">UI/UX</span>
-                                <span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                <span class="portfolio-block-tag">AGENT INTERFACES</span>
-                                <span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                <span class="portfolio-block-tag">PROTOTYPING</span>
+                        <div class="portfolio-set" data-set="aerial">
+                            <div onclick="showProjectModal(3)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/103/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">alpine listing</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">4K</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">TWILIGHT</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">LUXURY</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(4)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/105/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">lakefront estate</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">ORBIT</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">STILLS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">MARKETING</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(5)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">kootenay ridges</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">TERRAIN</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">FOG</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">GOLDEN HOUR</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Block 3 -->
-                    <div onclick="showProjectModal(2)" 
-                         class="portfolio-block group relative cursor-pointer border border-white/10">
-                        <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
-                        
-                        <div class="corner-bracket corner-bracket-tl"></div>
-                        <div class="corner-bracket corner-bracket-tr"></div>
-                        <div class="corner-bracket corner-bracket-bl"></div>
-                        <div class="corner-bracket corner-bracket-br"></div>
-
-                        <div class="portfolio-block-caption">
-                            <div class="portfolio-block-title">brand &amp; print</div>
-                            <div class="portfolio-block-tags">
-                                <span class="portfolio-block-tag">IDENTITY</span>
-                                <span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                <span class="portfolio-block-tag">COLLATERAL</span>
-                                <span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                <span class="portfolio-block-tag">DIGITAL</span>
+                        <div class="portfolio-set" data-set="digital">
+                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">agent interface</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">NEXT.JS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">TAILWIND</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">API</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(6)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/64/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">content ops tool</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">DASHBOARD</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">WORKFLOW</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">CMS</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(7)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/180/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">prototype kit</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">FIGMA</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">COMPONENTS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">DOCS</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="portfolio-set" data-set="print">
+                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">studio identity</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">LOGO</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">STATIONERY</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">SIGNAGE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(8)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/42/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">annual report</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">LAYOUT</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">INFOGRAPHICS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">PRINT</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div onclick="showProjectModal(9)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/225/800/600')"></div>
+                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                                <div class="portfolio-block-caption">
+                                    <div class="portfolio-block-title">packaging line</div>
+                                    <div class="portfolio-block-tags">
+                                        <span class="portfolio-block-tag">DIELINE</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">PROOFS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
+                                        <span class="portfolio-block-tag">RETAIL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -444,13 +604,70 @@
                 description: "Complete brand systems from logo, typography, and color through to print materials, packaging, and digital extensions. Cohesive across physical and digital touchpoints.",
                 tags: ["Logo & Identity", "Print Collateral", "Packaging", "Brand Guidelines"],
                 details: "Full rebrands and ongoing asset systems for boutique developments and creative studios. Print-ready files and production support."
+            },
+            {
+                id: 3,
+                title: "Alpine Listing",
+                subtitle: "Twilight Aerial Campaign",
+                description: "Luxury mountain property marketing with twilight orbits, interior-to-exterior transitions, and graded stills for print and MLS.",
+                tags: ["Twilight Flight", "Luxury Listing", "4K Video", "Print Stills"],
+                details: "Hero imagery and a short cinematic reel for a high-elevation residence overlooking alpine lakes."
+            },
+            {
+                id: 4,
+                title: "Lakefront Estate",
+                subtitle: "Orbit & Marketing Package",
+                description: "Waterfront property coverage combining low-orbit video, dock-level perspectives, and lifestyle stills for broker marketing.",
+                tags: ["Orbit Paths", "Lifestyle Stills", "Broker Kit", "Social Cuts"],
+                details: "Delivered a cohesive set of aerial and ground assets for a summer listing push."
+            },
+            {
+                id: 5,
+                title: "Kootenay Ridges",
+                subtitle: "Terrain & Atmosphere Study",
+                description: "Mood-forward aerial work emphasizing fog, ridgelines, and golden-hour light across the Kootenay region.",
+                tags: ["Golden Hour", "Terrain Mapping", "Atmosphere", "Fine Art Stills"],
+                details: "A personal and client-facing collection highlighting Western Canadian landscape character."
+            },
+            {
+                id: 6,
+                title: "Content Ops Tool",
+                subtitle: "Dashboard & Workflow UI",
+                description: "Internal operations dashboard for managing assets, approvals, and publishing with a calm, high-contrast interface.",
+                tags: ["Dashboard UI", "Workflow", "CMS Integration", "Role Views"],
+                details: "Designed and prototyped a tool for streamlining content review without visual clutter."
+            },
+            {
+                id: 7,
+                title: "Prototype Kit",
+                subtitle: "Figma → Code System",
+                description: "Reusable component library and documentation bridging design and front-end implementation.",
+                tags: ["Figma Library", "Components", "Tokens", "Handoff Docs"],
+                details: "Accelerates client projects with consistent patterns and clear build notes for developers."
+            },
+            {
+                id: 8,
+                title: "Annual Report",
+                subtitle: "Editorial Layout System",
+                description: "Long-form print layout with infographics, photography, and typographic hierarchy for an annual stakeholder report.",
+                tags: ["Editorial Layout", "Infographics", "Print Production", "Typography"],
+                details: "Full design through print-ready PDFs with production oversight."
+            },
+            {
+                id: 9,
+                title: "Packaging Line",
+                subtitle: "Retail Shelf System",
+                description: "Packaging architecture, dielines, and proofing for a boutique product line extending an existing brand system.",
+                tags: ["Dielines", "Proofing", "Retail", "Brand Extension"],
+                details: "Coordinated with print vendors on color, substrate, and shelf presence."
             }
         ];
 
         let currentProject = null;
 
-        function showProjectModal(index) {
-            const project = projects[index];
+        function showProjectModal(id) {
+            const project = projects.find(function(p) { return p.id === id; });
+            if (!project) return;
             currentProject = project;
 
             const modal = document.getElementById('modal');
@@ -470,7 +687,7 @@
                 <div class="text-sm text-white/80">${project.details}</div>
             `;
 
-            if (index === 1) {
+            if (id === 1) {
                 bodyHTML += `
                     <div class="mt-8 pt-6 border-t border-white/10">
                         <div class="text-xs uppercase tracking-widest text-emerald-400 mb-1">INTERACTIVE PROTOTYPE</div>
@@ -619,16 +836,31 @@
             .then(startIntroSequence);
 
         function updateThumbnailHalfGap() {
-            const grid = document.querySelector('.portfolio-grid');
-            const blocks = grid.querySelectorAll('.portfolio-block');
+            const activeSet = document.querySelector('.portfolio-set.is-active');
+            if (!activeSet) return;
+
+            const blocks = activeSet.querySelectorAll('.portfolio-block');
             if (blocks.length < 2) return;
 
             const first = blocks[0].getBoundingClientRect();
             const second = blocks[1].getBoundingClientRect();
             const gap = second.left - first.right;
 
-            grid.style.setProperty('--half-gap', gap > 0 ? `${gap / 2}px` : '0px');
+            document.querySelector('.portfolio-grid').style.setProperty('--half-gap', gap > 0 ? `${gap / 2}px` : '0px');
         }
+
+        document.querySelectorAll('.filter-tabs button').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var set = btn.dataset.set;
+                document.querySelectorAll('.filter-tabs button').forEach(function(b) {
+                    b.classList.toggle('is-active', b === btn);
+                });
+                document.querySelectorAll('.portfolio-set').forEach(function(group) {
+                    group.classList.toggle('is-active', group.dataset.set === set);
+                });
+                updateThumbnailHalfGap();
+            });
+        });
 
         window.addEventListener('resize', updateThumbnailHalfGap);
 
