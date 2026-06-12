@@ -75,7 +75,6 @@
         .overlay-strip {
             --strip-padding: 130.5px;
             position: relative;
-            isolation: isolate;
             margin-top: 90px;
             padding: var(--strip-padding) 0;
             overflow: visible;
@@ -94,6 +93,7 @@
             mask-size: 14px 14px;
             -webkit-mask-repeat: repeat;
             mask-repeat: repeat;
+            mix-blend-mode: color-burn;
         }
 
         .portfolio-grid {
