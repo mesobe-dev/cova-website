@@ -97,15 +97,20 @@
 
         .strip-block {
             position: relative;
-            margin-top: 120px;
+            margin-top: 100px;
+        }
+
+        .strip-nav-cluster {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 26px;
+            position: relative;
+            z-index: 0;
         }
 
         .filter-tabs {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            right: 0;
-            margin-bottom: 28px;
             display: flex;
             justify-content: center;
             gap: 28px;
@@ -136,16 +141,10 @@
         }
 
         .capture-modes {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            right: 0;
-            margin-bottom: 8px;
             display: flex;
             justify-content: center;
             gap: 18px;
             padding: 0 20px;
-            transform: translateY(-22px);
         }
 
         .capture-modes button {
@@ -197,7 +196,7 @@
 
         .portfolio-grid {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             width: 100%;
             min-height: 324px;
             overflow: visible;
@@ -469,18 +468,20 @@
 
             <div id="page-content" class="page-content w-full">
             <div class="strip-block">
-                <nav class="filter-tabs" aria-label="Work categories">
-                    <button type="button" class="is-active" data-set="featured">featured</button>
-                    <button type="button" data-set="aerial">aerial</button>
-                    <button type="button" data-set="digital">digital</button>
-                    <button type="button" data-set="print">print</button>
-                </nav>
+                <div class="strip-nav-cluster">
+                    <nav class="filter-tabs" aria-label="Work categories">
+                        <button type="button" class="is-active" data-set="featured">featured</button>
+                        <button type="button" data-set="aerial">aerial</button>
+                        <button type="button" data-set="digital">digital</button>
+                        <button type="button" data-set="print">print</button>
+                    </nav>
 
-                <nav class="capture-modes" aria-label="Capture transition preview">
-                    <button type="button" class="is-active" data-capture="shutter">shutter</button>
-                    <button type="button" data-capture="exposure">exposure</button>
-                    <button type="button" data-capture="snap">snap</button>
-                </nav>
+                    <nav class="capture-modes" aria-label="Capture transition preview">
+                        <button type="button" class="is-active" data-capture="shutter">shutter</button>
+                        <button type="button" data-capture="exposure">exposure</button>
+                        <button type="button" data-capture="snap">snap</button>
+                    </nav>
+                </div>
 
                 <div class="overlay-strip w-full">
                     <div class="portfolio-grid capture-mode-shutter" id="portfolio-grid">
