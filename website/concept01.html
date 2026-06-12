@@ -54,6 +54,34 @@
             opacity: 1;
         }
 
+        .site-logo {
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .site-logo__img {
+            display: block;
+            height: 58px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .site-logo__img {
+                height: 69px;
+            }
+        }
+
+        .site-logo.is-revealed {
+            animation: logoFadeIn 1s linear forwards;
+        }
+
+        @keyframes logoFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .page-content {
             opacity: 0;
             filter: blur(8px) brightness(0.75);
@@ -61,6 +89,10 @@
 
         .page-content.is-revealed {
             animation: contentLensLoad 1s linear forwards;
+        }
+
+        .page-content.is-revealed.is-settled {
+            filter: none;
         }
 
         @keyframes contentLensLoad {
@@ -76,7 +108,7 @@
             --strip-padding: 130.5px;
             --caption-font-size: 10px;
             --title-font-size: 1rem;
-            --title-bar-color: #c3b51b;
+            --title-bar-color: rgba(0, 0, 0, 0.9);
             position: relative;
             margin-top: 90px;
             padding: var(--strip-padding) 0;
@@ -241,15 +273,15 @@
 
     <div class="page-bg min-h-screen w-full flex items-center justify-center">
         
-        <div id="page-content" class="page-content w-full">
+        <div class="page-shell w-full">
 
-            <!-- Logo -->
-            <div class="flex justify-center">
-                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-[57.5px] md:h-[69px] w-auto">
+            <div id="site-logo" class="site-logo">
+                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="site-logo__img" width="230" height="58">
             </div>
 
             <nav class="site-tabs" aria-label="Sections"></nav>
 
+            <div id="page-content" class="page-content w-full">
             <div class="overlay-strip w-full">
                 <div class="portfolio-grid">
                         
@@ -322,6 +354,7 @@
                 </div>
             </div>
 
+            </div>
         </div>
     </div>
 
@@ -526,13 +559,21 @@
         function startIntroSequence() {
             const preloader = document.getElementById('preloader');
             const pageBg = document.querySelector('.page-bg');
+            const siteLogo = document.getElementById('site-logo');
             const pageContent = document.getElementById('page-content');
 
             document.body.classList.remove('is-loading');
             preloader.classList.add('is-hidden');
             pageBg.classList.add('is-visible');
 
+            pageContent.addEventListener('animationend', function(event) {
+                if (event.animationName === 'contentLensLoad') {
+                    pageContent.classList.add('is-settled');
+                }
+            }, { once: true });
+
             setTimeout(function() {
+                siteLogo.classList.add('is-revealed');
                 pageContent.classList.add('is-revealed');
                 updateThumbnailHalfGap();
             }, 1000);
