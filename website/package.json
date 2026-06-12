@@ -1,9 +1,15 @@
 {
+  "scripts": {
+    "dev": "live-server --port=3456 --open=/concept01.html --watch=."
+  },
   "dependencies": {
     "bootstrap": "^5.3.3",
     "grunt": "^1.6.1",
     "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "sass": "^1.74.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
