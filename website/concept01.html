@@ -229,7 +229,12 @@
             z-index: 1;
             overflow: visible;
             transition: transform 0.15s ease, border-color 0.2s ease, border-width 0.2s ease, background-color 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.38);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background-color: rgba(8, 10, 12, 0.42);
+        }
+
+        .portfolio-block.is-capturing {
+            border: 1px solid rgba(255, 255, 255, 0.5);
             background-color: rgba(8, 10, 12, 0.42);
         }
 
@@ -243,16 +248,29 @@
         }
 
         .portfolio-block.is-capturing .portfolio-block-caption {
-            opacity: 0;
+            opacity: 0 !important;
             transform: translateY(8px);
+            animation: none;
         }
 
-        .portfolio-block.is-captured .portfolio-block-caption {
+        .capture-mode-exposure .portfolio-block.is-captured .portfolio-block-caption,
+        .capture-mode-snap .portfolio-block.is-captured .portfolio-block-caption {
+            opacity: 0;
             animation: captionCapture 0.32s ease 0.18s forwards;
         }
 
         @keyframes captionCapture {
             from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .capture-mode-shutter .portfolio-block.is-captured .portfolio-block-caption {
+            opacity: 0;
+            animation: captionShutterOnce 0.22s ease 0.5s forwards;
+        }
+
+        @keyframes captionShutterOnce {
+            from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -960,6 +978,7 @@
             document.querySelector('.portfolio-grid').style.setProperty('--half-gap', gap > 0 ? `${gap / 2}px` : '0px');
         }
 
+        var captureHoldMs = 500;
         var captureStaggerMs = 130;
 
         function runCaptureSequence(setEl) {
@@ -975,7 +994,7 @@
                 setTimeout(function() {
                     block.classList.add('is-captured');
                     block.classList.remove('is-capturing');
-                }, 70 + index * captureStaggerMs);
+                }, captureHoldMs + index * captureStaggerMs);
             });
         }
 
