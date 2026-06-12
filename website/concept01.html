@@ -69,11 +69,23 @@
         }
 
         .logo-wrap {
+            --logo-h: 58px;
+            --logo-w: calc(var(--logo-h) * 421.7 / 105.6);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .logo-svg {
+        @media (min-width: 768px) {
+            .logo-wrap {
+                --logo-h: 69px;
+            }
+        }
+
+        .logo-svg-cova {
+            width: var(--logo-w);
+            height: calc(var(--logo-h) * 70 / 105.6);
+            shape-rendering: geometricPrecision;
             overflow: visible;
         }
 
@@ -91,46 +103,67 @@
             to { opacity: 1; filter: blur(0); }
         }
 
-        .logo-line {
+        .logo-tagline {
+            width: var(--logo-w);
+            margin-top: 2px;
+        }
+
+        .logo-line-mask {
+            overflow: hidden;
             opacity: 0;
-            transform: translateX(-20px);
             clip-path: inset(0 100% 0 0);
         }
 
-        .logo-line.is-revealed {
+        .logo-line-mask.is-revealed {
             animation: logoLineIn 0.35s linear forwards;
         }
 
         @keyframes logoLineIn {
             from {
                 opacity: 0;
-                transform: translateX(-20px);
                 clip-path: inset(0 100% 0 0);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
                 clip-path: inset(0 0 0 0);
             }
         }
 
-        .logo-multimedia {
-            opacity: 0;
-            transform: translateX(-20px);
+        .logo-line-bar {
+            height: 1px;
+            background-color: #fff;
+            width: calc(100% + 20px);
+            margin-left: -20px;
         }
 
-        .logo-multimedia.is-revealed {
+        .logo-multimedia-mask {
+            overflow: hidden;
+            height: calc(var(--logo-h) * 28 / 105.6);
+            margin-top: 6px;
+        }
+
+        .logo-multimedia-img {
+            display: block;
+            width: var(--logo-w);
+            height: var(--logo-h);
+            max-width: none;
+            margin-top: calc(var(--logo-h) * -77 / 105.6);
+            margin-left: -20px;
+            opacity: 0;
+        }
+
+        .logo-multimedia-mask.is-revealed .logo-multimedia-img {
             animation: logoMultimediaIn 0.35s linear forwards;
         }
 
         @keyframes logoMultimediaIn {
             from {
                 opacity: 0;
-                transform: translateX(-20px);
+                margin-left: -20px;
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                margin-left: 0;
             }
         }
 
@@ -261,7 +294,7 @@
         
         <div class="w-full">
             <div class="logo-wrap" aria-label="C·O·V·A Multimedia">
-                <svg class="logo-svg h-[57.5px] md:h-[69px] w-auto" viewBox="0 0 421.7 105.6" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                <svg class="logo-svg-cova" viewBox="0 0 421.7 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                     <g class="logo-cova" fill="#fff">
                         <path d="M158,.5c10.1,0,18.6,3.4,25.5,10.2,6.8,6.8,10.3,15.1,10.3,25s-3.4,18.1-10.2,25c-6.8,6.8-15.1,10.2-25,10.2s-18.3-3.4-25.2-10.2c-6.8-6.8-10.3-15-10.3-24.7s1.6-12.4,4.7-17.9c3.1-5.5,7.4-9.8,12.7-12.9,5.4-3.1,11.2-4.7,17.5-4.7ZM158.3,7c-5,0-9.7,1.3-14.1,3.9s-7.9,6.1-10.4,10.4c-2.5,4.4-3.7,9.3-3.7,14.6,0,8,2.8,14.7,8.3,20.2,5.5,5.5,12.2,8.2,20,8.2s10-1.3,14.4-3.8,7.9-6,10.4-10.3,3.7-9.2,3.7-14.6-1.2-10.1-3.7-14.4-6-7.7-10.5-10.3c-4.5-2.6-9.3-3.9-14.3-3.9Z"/>
                         <path d="M248.8,2.2h7.3l22.2,51.8,22.6-51.8h7.3l-29.2,67h-1.5L248.8,2.2Z"/>
@@ -271,22 +304,15 @@
                         <circle cx="94.6" cy="35.7" r="4.2"/>
                         <path d="M60.8,52.3c-2.3,3.4-5.3,6.1-9,8.2-4.4,2.5-9.2,3.8-14.4,3.8-7.8,0-14.4-2.7-20-8.2-5.5-5.5-8.3-12.2-8.3-20.2s1.2-10.3,3.7-14.6c2.5-4.4,6-7.9,10.4-10.4s9.1-3.9,14.1-3.9,9.8,1.3,14.3,3.9c3.9,2.3,7.1,5.2,9.5,8.7l5.4-4.2c-1.2-1.7-2.5-3.3-4.1-4.8C55.7,3.9,47.2.5,37,.5s-12.1,1.6-17.5,4.7c-5.4,3.1-9.6,7.4-12.7,12.9-3.1,5.5-4.7,11.5-4.7,17.9,0,9.7,3.4,17.9,10.3,24.7,6.8,6.8,15.2,10.2,25.2,10.2s18.1-3.4,25-10.2c1.3-1.4,2.5-2.8,3.6-4.2l-5.4-4Z"/>
                     </g>
-                    <g class="logo-tagline" fill="#fff">
-                        <path class="logo-line" d="M5.8,97.5v-1h226.9v1H5.8Z"/>
-                        <g class="logo-multimedia">
-                        <path d="M249.6,91.6h1.5v2c.5-.7,1-1.2,1.6-1.6.7-.4,1.5-.7,2.3-.7s1.1.1,1.6.3c.5.2.9.5,1.2.9.3.4.6.9.8,1.5.5-.9,1.1-1.6,1.8-2,.7-.5,1.5-.7,2.3-.7s1.5.2,2.1.6,1,.9,1.3,1.7c.3.7.4,1.8.4,3.2v6.2h-1.5v-6.2c0-1.2,0-2-.3-2.5s-.5-.8-.9-1.1c-.4-.3-.9-.4-1.5-.4s-1.3.2-1.9.6-1,1-1.3,1.7c-.3.7-.4,1.8-.4,3.5v4.4h-1.5v-5.8c0-1.4,0-2.3-.3-2.8s-.5-.9-.9-1.2c-.4-.3-.9-.4-1.5-.4s-1.3.2-1.9.6c-.6.4-1,1-1.3,1.6-.3.7-.4,1.7-.4,3.1v4.8h-1.5v-11.3Z"/>
-                        <path d="M275.7,91.6h1.5v5.3c0,1.3,0,2.2.2,2.7.2.7.6,1.2,1.2,1.6.6.4,1.3.6,2.1.6s1.5-.2,2.1-.6c.6-.4,1-.9,1.2-1.5.1-.4.2-1.4.2-2.8v-5.3h1.5v5.5c0,1.6-.2,2.7-.5,3.5-.4.8-.9,1.4-1.6,1.9-.7.4-1.6.7-2.7.7s-2-.2-2.8-.7c-.7-.4-1.3-1.1-1.7-1.9-.4-.8-.5-2-.5-3.6v-5.4Z"/>
-                        <path d="M295,87.2h1.5v15.7h-1.5v-15.7Z"/>
-                        <path d="M307.2,87.4h1.5v4.2h2.3v1.3h-2.3v10h-1.5v-10h-2v-1.3h2v-4.2Z"/>
-                        <path d="M320,86.9c.3,0,.6.1.8.4.2.2.4.5.4.9s-.1.6-.4.8c-.2.2-.5.4-.8.4s-.6-.1-.8-.4c-.2-.2-.4-.5-.4-.8s.1-.6.4-.9c.2-.2.5-.4.8-.4ZM319.3,91.6h1.5v11.3h-1.5v-11.3Z"/>
-                        <path d="M330.1,91.6h1.5v2c.5-.7,1-1.2,1.6-1.6.7-.4,1.5-.7,2.3-.7s1.1.1,1.6.3c.5.2.9.5,1.2.9.3.4.6.9.8,1.5.5-.9,1.1-1.6,1.8-2,.7-.5,1.5-.7,2.3-.7s1.5.2,2.1.6c.6.4,1,.9,1.3,1.7s.4,1.8.4,3.2v6.2h-1.5v-6.2c0-1.2,0-2-.3-2.5s-.5-.8-.9-1.1-.9-.4-1.5-.4-1.3.2-1.9.6-1,1-1.3,1.7-.4,1.8-.4,3.5v4.4h-1.5v-5.8c0-1.4,0-2.3-.3-2.8-.2-.5-.5-.9-.9-1.2-.4-.3-.9-.4-1.5-.4s-1.3.2-1.9.6c-.6.4-1,1-1.3,1.6-.3.7-.4,1.7-.4,3.1v4.8h-1.5v-11.3Z"/>
-                        <path d="M366,99.1l1.2.6c-.4.8-.9,1.4-1.4,1.9-.5.5-1.1.9-1.8,1.1-.7.3-1.4.4-2.2.4-1.8,0-3.3-.6-4.3-1.8s-1.6-2.6-1.6-4.1.4-2.7,1.3-3.8c1.1-1.4,2.6-2.1,4.5-2.1s3.5.7,4.6,2.2c.8,1,1.2,2.3,1.2,3.9h-10.2c0,1.3.4,2.4,1.3,3.2s1.8,1.3,3,1.3,1.1,0,1.7-.3c.5-.2,1-.5,1.4-.8.4-.3.8-.9,1.2-1.6ZM366,96.1c-.2-.8-.5-1.4-.8-1.9-.4-.5-.9-.8-1.5-1.1-.6-.3-1.3-.4-1.9-.4-1.1,0-2.1.4-2.9,1.1-.6.5-1,1.3-1.3,2.3h8.4Z"/>
-                        <path d="M388,87.2v15.7h-1.4v-1.9c-.6.7-1.3,1.3-2.1,1.7-.8.4-1.6.6-2.5.6-1.6,0-3-.6-4.1-1.7s-1.7-2.6-1.7-4.2.6-3,1.7-4.2c1.1-1.2,2.5-1.7,4.1-1.7s1.8.2,2.5.6c.8.4,1.4,1,2,1.8v-6.4h1.4ZM382.2,92.7c-.8,0-1.6.2-2.2.6-.7.4-1.2,1-1.6,1.7-.4.7-.6,1.5-.6,2.3s.2,1.6.6,2.3c.4.7,1,1.3,1.6,1.7.7.4,1.4.6,2.2.6s1.6-.2,2.3-.6,1.3-.9,1.6-1.6c.4-.7.6-1.5.6-2.3,0-1.3-.4-2.4-1.3-3.3-.9-.9-1.9-1.3-3.2-1.3Z"/>
-                        <path d="M398.2,86.9c.3,0,.6.1.8.4.2.2.4.5.4.9s-.1.6-.4.8c-.2.2-.5.4-.8.4s-.6-.1-.8-.4c-.2-.2-.4-.5-.4-.8s.1-.6.4-.9c.2-.2.5-.4.8-.4ZM397.5,91.6h1.5v11.3h-1.5v-11.3Z"/>
-                        <path d="M419.6,91.6v11.3h-1.4v-1.9c-.6.7-1.3,1.3-2.1,1.7-.8.4-1.6.6-2.5.6-1.6,0-3-.6-4.1-1.7s-1.7-2.6-1.7-4.2.6-3,1.7-4.2c1.1-1.2,2.5-1.7,4.1-1.7s1.8.2,2.5.6c.8.4,1.4,1,2,1.8v-2.1h1.4ZM413.8,92.7c-.8,0-1.6.2-2.2.6-.7.4-1.2,1-1.6,1.7-.4.7-.6,1.5-.6,2.3s.2,1.6.6,2.3c.4.7,1,1.3,1.6,1.7.7.4,1.4.6,2.2.6s1.6-.2,2.3-.6,1.3-.9,1.6-1.6c.4-.7.6-1.5.6-2.3,0-1.3-.4-2.4-1.3-3.3-.9-.9-1.9-1.3-3.2-1.3Z"/>
-                        </g>
-                    </g>
                 </svg>
+                <div class="logo-tagline">
+                    <div class="logo-line-mask">
+                        <div class="logo-line-bar"></div>
+                    </div>
+                    <div class="logo-multimedia-mask">
+                        <img src="https://cova.ca/images/cova-logo.svg" alt="" class="logo-multimedia-img" width="276" height="69" draggable="false">
+                    </div>
+                </div>
             </div>
 
         <div id="page-content" class="page-content w-full">
@@ -563,14 +589,14 @@
 
         function startLogoAnimation() {
             const cova = document.querySelector('.logo-cova');
-            const line = document.querySelector('.logo-line');
-            const multimedia = document.querySelector('.logo-multimedia');
-            if (!cova || !line || !multimedia) return;
+            const lineMask = document.querySelector('.logo-line-mask');
+            const multimediaMask = document.querySelector('.logo-multimedia-mask');
+            if (!cova || !lineMask || !multimediaMask) return;
 
             cova.classList.add('is-revealed');
             cova.addEventListener('animationend', function() {
-                line.classList.add('is-revealed');
-                multimedia.classList.add('is-revealed');
+                lineMask.classList.add('is-revealed');
+                multimediaMask.classList.add('is-revealed');
             }, { once: true });
         }
 
