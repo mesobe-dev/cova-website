@@ -140,34 +140,6 @@
             text-underline-offset: 6px;
         }
 
-        .capture-modes {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            padding: 0 20px;
-        }
-
-        .capture-modes button {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.22);
-            font-size: 9px;
-            font-weight: 500;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            cursor: pointer;
-            padding: 0;
-            transition: color 0.2s ease;
-        }
-
-        .capture-modes button:hover {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .capture-modes button.is-active {
-            color: rgba(255, 255, 255, 0.55);
-        }
-
         .overlay-strip {
             --strip-padding: 78.5px;
             --caption-font-size: 10px;
@@ -234,7 +206,7 @@
         }
 
         .portfolio-block.is-capturing {
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             background-color: transparent;
         }
 
@@ -258,18 +230,7 @@
             transform: translateY(0);
         }
 
-        .capture-mode-exposure.is-capture-sequence .portfolio-block.is-captured .portfolio-block-caption,
-        .capture-mode-snap.is-capture-sequence .portfolio-block.is-captured .portfolio-block-caption {
-            opacity: 0;
-            animation: captionCapture 0.32s ease 0.18s forwards;
-        }
-
-        @keyframes captionCapture {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .capture-mode-shutter.is-capture-sequence .portfolio-block.is-captured .portfolio-block-caption {
+        .is-capture-sequence .portfolio-block.is-captured .portfolio-block-caption {
             opacity: 0;
             animation: captionShutterOnce 0.22s ease 0.5s forwards;
         }
@@ -279,8 +240,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Shutter: brief flash + scale lock */
-        .capture-mode-shutter.is-capture-sequence .portfolio-block.is-captured .portfolio-block-media {
+        .is-capture-sequence .portfolio-block.is-captured .portfolio-block-media {
             animation: mediaShutter 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
@@ -290,7 +250,7 @@
             100% { opacity: 1; transform: scale(1); filter: brightness(1); }
         }
 
-        .capture-mode-shutter.is-capture-sequence .portfolio-block.is-captured::after {
+        .is-capture-sequence .portfolio-block.is-captured::after {
             content: '';
             position: absolute;
             inset: 0;
@@ -303,29 +263,6 @@
         @keyframes shutterFlash {
             0% { opacity: 0.72; }
             100% { opacity: 0; }
-        }
-
-        /* Exposure: brightness hunt then lock */
-        .capture-mode-exposure.is-capture-sequence .portfolio-block.is-captured .portfolio-block-media {
-            animation: mediaExposure 0.55s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-        }
-
-        @keyframes mediaExposure {
-            0% { opacity: 0; filter: brightness(3) contrast(0.75); transform: scale(1.01); }
-            35% { opacity: 0.85; filter: brightness(1.8) contrast(0.95); }
-            65% { opacity: 1; filter: brightness(0.92) contrast(1.05); }
-            100% { opacity: 1; filter: brightness(1) contrast(1); transform: scale(1); }
-        }
-
-        /* Snap: viewfinder crop closes in */
-        .capture-mode-snap.is-capture-sequence .portfolio-block.is-captured .portfolio-block-media {
-            animation: mediaSnap 0.42s cubic-bezier(0.34, 1.12, 0.64, 1) forwards;
-        }
-
-        @keyframes mediaSnap {
-            0% { opacity: 0.35; clip-path: inset(46% 46% 46% 46%); transform: scale(1.03); filter: brightness(1.35); }
-            55% { opacity: 1; clip-path: inset(6% 6% 6% 6%); filter: brightness(1.1); }
-            100% { opacity: 1; clip-path: inset(0); transform: scale(1); filter: brightness(1); }
         }
 
         .portfolio-block::before {
@@ -499,15 +436,10 @@
                         <button type="button" data-set="print">print</button>
                     </nav>
 
-                    <nav class="capture-modes" aria-label="Capture transition preview">
-                        <button type="button" class="is-active" data-capture="shutter">shutter</button>
-                        <button type="button" data-capture="exposure">exposure</button>
-                        <button type="button" data-capture="snap">snap</button>
-                    </nav>
                 </div>
 
                 <div class="overlay-strip w-full">
-                    <div class="portfolio-grid capture-mode-shutter" id="portfolio-grid">
+                    <div class="portfolio-grid" id="portfolio-grid">
 
                         <div class="portfolio-set is-active" data-set="featured">
                             <div onclick="showProjectModal(0)" class="portfolio-block group relative cursor-pointer is-captured">
@@ -1029,19 +961,6 @@
         document.querySelectorAll('.filter-tabs button').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 switchPortfolioSet(btn.dataset.set);
-            });
-        });
-
-        document.querySelectorAll('.capture-modes button').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var mode = btn.dataset.capture;
-                var grid = document.getElementById('portfolio-grid');
-                grid.classList.remove('capture-mode-shutter', 'capture-mode-exposure', 'capture-mode-snap');
-                grid.classList.add('capture-mode-' + mode);
-                document.querySelectorAll('.capture-modes button').forEach(function(b) {
-                    b.classList.toggle('is-active', b === btn);
-                });
-                runCaptureSequence(document.querySelector('.portfolio-set.is-active'));
             });
         });
 
