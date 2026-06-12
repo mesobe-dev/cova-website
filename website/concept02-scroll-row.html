@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C·O·V·A — Concept 02: Scroll Row</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .page-bg {
+            background-image: url('https://cova.ca/images/concept_bg.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .concept-label {
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            margin-top: 24px;
+        }
+        .concept-note {
+            text-align: center;
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 6px;
+        }
+        .site-logo { display: flex; justify-content: center; padding-top: 48px; }
+        .site-logo__svg { width: calc(418px * 0.715); max-width: 90vw; height: auto; }
+        .overlay-strip {
+            --strip-padding: 130.5px;
+            position: relative;
+            margin-top: 72px;
+            padding: var(--strip-padding) 0;
+        }
+        .overlay-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(to right, #95a9b2, #000, #2d2026);
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='1' fill='%23fff'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='1' fill='%23fff'/%3E%3C/svg%3E");
+            -webkit-mask-size: 14px 14px;
+            mask-size: 14px 14px;
+            -webkit-mask-repeat: repeat;
+            mask-repeat: repeat;
+            mix-blend-mode: color-burn;
+        }
+        .scroll-wrap {
+            position: relative;
+            z-index: 1;
+        }
+        .scroll-wrap::before,
+        .scroll-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .scroll-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.35), transparent);
+        }
+        .scroll-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(0,0,0,0.35), transparent);
+        }
+        .portfolio-scroll {
+            display: flex;
+            gap: 48px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: calc(50vw - 162px);
+            padding: 0 calc(50vw - 162px);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .portfolio-scroll::-webkit-scrollbar { display: none; }
+        .portfolio-block {
+            flex: 0 0 324px;
+            width: 324px;
+            height: 324px;
+            position: relative;
+            scroll-snap-align: center;
+            border: 2px solid #000;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .portfolio-block:hover { transform: translateY(-2px); }
+        .portfolio-block-media {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .portfolio-block-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0 0.625rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            z-index: 2;
+        }
+        .portfolio-block-title {
+            background: rgba(0,0,0,0.9);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 6px;
+            text-transform: capitalize;
+        }
+        .portfolio-block-tags {
+            background: #fff;
+            padding: 0.125rem 0.375rem;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #000;
+        }
+        .corner-bracket {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #fff;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .corner-bracket-tl { top: -9px; left: -9px; border-right: none; border-bottom: none; }
+        .corner-bracket-tr { top: -9px; right: -9px; border-left: none; border-bottom: none; }
+        .corner-bracket-bl { bottom: -9px; left: -9px; border-right: none; border-top: none; }
+        .corner-bracket-br { bottom: -9px; right: -9px; border-left: none; border-top: none; }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 32px;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .nav-links a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .nav-links a:hover { color: rgba(255,255,255,0.8); }
+        .nav-links a.is-current { color: #fff; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white overflow-x-hidden">
+    <div class="page-bg flex flex-col items-center">
+        <div class="site-logo">
+            <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="site-logo__svg">
+        </div>
+        <p class="concept-label">Concept 02 — Horizontal scroll row</p>
+        <p class="concept-note">Three full pieces centered; more peek at the edges. No extra chrome — drag or scroll.</p>
+
+        <div class="overlay-strip w-full">
+            <div class="scroll-wrap">
+                <div class="portfolio-scroll" id="portfolio-scroll">
+                    <div class="portfolio-block">
+                        <div class="portfolio-block-media" style="background-image:url('https://picsum.photos/id/1018/800/600')"></div>
+                        <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                        <div class="portfolio-block-caption">
+                            <div class="portfolio-block-title">drone photography</div>
+                            <div class="portfolio-block-tags">aerial · cinematic · property</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-block">
+                        <div class="portfolio-block-media" style="background-image:url('https://picsum.photos/id/160/800/600')"></div>
+                        <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                        <div class="portfolio-block-caption">
+                            <div class="portfolio-block-title">interactive systems</div>
+                            <div class="portfolio-block-tags">ui/ux · agents · prototyping</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-block">
+                        <div class="portfolio-block-media" style="background-image:url('https://picsum.photos/id/201/800/600')"></div>
+                        <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                        <div class="portfolio-block-caption">
+                            <div class="portfolio-block-title">brand &amp; print</div>
+                            <div class="portfolio-block-tags">identity · collateral · digital</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-block">
+                        <div class="portfolio-block-media" style="background-image:url('https://picsum.photos/id/28/800/600')"></div>
+                        <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                        <div class="portfolio-block-caption">
+                            <div class="portfolio-block-title">motion &amp; video</div>
+                            <div class="portfolio-block-tags">edit · grade · sound</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-block">
+                        <div class="portfolio-block-media" style="background-image:url('https://picsum.photos/id/42/800/600')"></div>
+                        <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                        <div class="portfolio-block-caption">
+                            <div class="portfolio-block-title">editorial layout</div>
+                            <div class="portfolio-block-tags">magazine · annual · reports</div>
+                        </div>
+                    </div>
+                    <div class="portfolio-block">
+                        <div class="portfolio-block-media" style="background-image:url('https://picsum.photos/id/64/800/600')"></div>
+                        <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
+                        <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
+                        <div class="portfolio-block-caption">
+                            <div class="portfolio-block-title">web experiences</div>
+                            <div class="portfolio-block-tags">react · cms · performance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav-links" aria-label="Concept navigation">
+            <a href="concept01.html">01 base</a>
+            <a href="concept02-scroll-row.html" class="is-current">02 scroll</a>
+            <a href="concept03-filter-tabs.html">03 filter</a>
+            <a href="concept04-paged-strip.html">04 paged</a>
+        </nav>
+    </div>
+</body>
+</html>
