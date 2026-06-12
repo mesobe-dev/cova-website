@@ -149,7 +149,6 @@
             flex: 0 0 324px;
             position: relative;
             z-index: 1;
-            isolation: isolate;
             overflow: visible;
             transition: transform 0.15s ease;
             border: 2px solid #000;
@@ -234,6 +233,18 @@
 
         .portfolio-block:hover::before {
             opacity: 1;
+        }
+
+        .portfolio-block:nth-child(1):hover::before {
+            mix-blend-mode: multiply;
+        }
+
+        .portfolio-block:nth-child(2):hover::before {
+            mix-blend-mode: color-burn;
+        }
+
+        .portfolio-block:nth-child(3):hover::before {
+            mix-blend-mode: overlay;
         }
 
         .corner-bracket {
