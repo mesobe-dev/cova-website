@@ -68,112 +68,6 @@
             to { opacity: 1; filter: blur(0) brightness(1); }
         }
 
-        .logo-wrap {
-            --logo-h: 58px;
-            --logo-w: calc(var(--logo-h) * 421.7 / 105.6);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .logo-wrap {
-                --logo-h: 69px;
-            }
-        }
-
-        .logo-svg-cova {
-            width: var(--logo-w);
-            height: calc(var(--logo-h) * 70 / 105.6);
-            shape-rendering: geometricPrecision;
-            overflow: visible;
-        }
-
-        .logo-cova {
-            opacity: 0;
-            filter: blur(8px);
-        }
-
-        .logo-cova.is-revealed {
-            animation: logoCovaIn 0.8s linear forwards;
-        }
-
-        @keyframes logoCovaIn {
-            from { opacity: 0; filter: blur(8px); }
-            to { opacity: 1; filter: blur(0); }
-        }
-
-        .logo-tagline {
-            display: flex;
-            align-items: center;
-            width: var(--logo-w);
-            height: calc(var(--logo-h) * 35.6 / 105.6);
-            padding-left: calc(var(--logo-w) * 5.8 / 421.7);
-            gap: calc(var(--logo-w) * 16.9 / 421.7);
-        }
-
-        .logo-line-mask {
-            flex: 0 0 calc(var(--logo-w) * 226.9 / 421.7);
-            overflow: hidden;
-            opacity: 0;
-            clip-path: inset(0 100% 0 0);
-        }
-
-        .logo-line-mask.is-revealed {
-            animation: logoLineIn 0.35s linear forwards;
-        }
-
-        @keyframes logoLineIn {
-            from {
-                opacity: 0;
-                clip-path: inset(0 100% 0 0);
-            }
-            to {
-                opacity: 1;
-                clip-path: inset(0 0 0 0);
-            }
-        }
-
-        .logo-line-bar {
-            height: 1px;
-            background-color: #fff;
-            width: calc(100% + 20px);
-            margin-left: -20px;
-        }
-
-        .logo-multimedia-mask {
-            position: relative;
-            flex: 1 1 auto;
-            overflow: hidden;
-            height: calc(var(--logo-h) * 18 / 105.6);
-            min-width: 0;
-        }
-
-        .logo-multimedia-img {
-            position: absolute;
-            top: calc(var(--logo-h) * -86 / 105.6);
-            left: calc(var(--logo-w) * -249.6 / 421.7);
-            width: var(--logo-w);
-            height: var(--logo-h);
-            max-width: none;
-            opacity: 0;
-        }
-
-        .logo-multimedia-mask.is-revealed .logo-multimedia-img {
-            animation: logoMultimediaIn 0.35s linear forwards;
-        }
-
-        @keyframes logoMultimediaIn {
-            from {
-                opacity: 0;
-                left: calc(var(--logo-w) * -249.6 / 421.7 - 20px);
-            }
-            to {
-                opacity: 1;
-                left: calc(var(--logo-w) * -249.6 / 421.7);
-            }
-        }
-
         .site-tabs {
             min-height: 0;
         }
@@ -299,30 +193,11 @@
 
     <div class="page-bg min-h-screen w-full flex items-center justify-center">
         
-        <div class="w-full">
-            <div class="logo-wrap" aria-label="C·O·V·A Multimedia">
-                <svg class="logo-svg-cova" viewBox="0 0 421.7 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-                    <g class="logo-cova" fill="#fff">
-                        <path d="M158,.5c10.1,0,18.6,3.4,25.5,10.2,6.8,6.8,10.3,15.1,10.3,25s-3.4,18.1-10.2,25c-6.8,6.8-15.1,10.2-25,10.2s-18.3-3.4-25.2-10.2c-6.8-6.8-10.3-15-10.3-24.7s1.6-12.4,4.7-17.9c3.1-5.5,7.4-9.8,12.7-12.9,5.4-3.1,11.2-4.7,17.5-4.7ZM158.3,7c-5,0-9.7,1.3-14.1,3.9s-7.9,6.1-10.4,10.4c-2.5,4.4-3.7,9.3-3.7,14.6,0,8,2.8,14.7,8.3,20.2,5.5,5.5,12.2,8.2,20,8.2s10-1.3,14.4-3.8,7.9-6,10.4-10.3,3.7-9.2,3.7-14.6-1.2-10.1-3.7-14.4-6-7.7-10.5-10.3c-4.5-2.6-9.3-3.9-14.3-3.9Z"/>
-                        <path d="M248.8,2.2h7.3l22.2,51.8,22.6-51.8h7.3l-29.2,67h-1.5L248.8,2.2Z"/>
-                        <path d="M388.8,2.2h1.5l29.2,67h-7.3l-22.6-51.8-22.2,51.8h-7.3L388.8,2.2Z"/>
-                        <circle cx="332.6" cy="39.8" r="4.2"/>
-                        <circle cx="221.3" cy="35.7" r="4.2"/>
-                        <circle cx="94.6" cy="35.7" r="4.2"/>
-                        <path d="M60.8,52.3c-2.3,3.4-5.3,6.1-9,8.2-4.4,2.5-9.2,3.8-14.4,3.8-7.8,0-14.4-2.7-20-8.2-5.5-5.5-8.3-12.2-8.3-20.2s1.2-10.3,3.7-14.6c2.5-4.4,6-7.9,10.4-10.4s9.1-3.9,14.1-3.9,9.8,1.3,14.3,3.9c3.9,2.3,7.1,5.2,9.5,8.7l5.4-4.2c-1.2-1.7-2.5-3.3-4.1-4.8C55.7,3.9,47.2.5,37,.5s-12.1,1.6-17.5,4.7c-5.4,3.1-9.6,7.4-12.7,12.9-3.1,5.5-4.7,11.5-4.7,17.9,0,9.7,3.4,17.9,10.3,24.7,6.8,6.8,15.2,10.2,25.2,10.2s18.1-3.4,25-10.2c1.3-1.4,2.5-2.8,3.6-4.2l-5.4-4Z"/>
-                    </g>
-                </svg>
-                <div class="logo-tagline">
-                    <div class="logo-line-mask">
-                        <div class="logo-line-bar"></div>
-                    </div>
-                    <div class="logo-multimedia-mask">
-                        <img src="https://cova.ca/images/cova-logo.svg" alt="" class="logo-multimedia-img" width="276" height="69" draggable="false">
-                    </div>
-                </div>
-            </div>
-
         <div id="page-content" class="page-content w-full">
+
+            <div class="flex justify-center">
+                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-[57.5px] md:h-[69px] w-auto">
+            </div>
 
             <nav class="site-tabs" aria-label="Sections"></nav>
 
@@ -594,19 +469,6 @@
             });
         }
 
-        function startLogoAnimation() {
-            const cova = document.querySelector('.logo-cova');
-            const lineMask = document.querySelector('.logo-line-mask');
-            const multimediaMask = document.querySelector('.logo-multimedia-mask');
-            if (!cova || !lineMask || !multimediaMask) return;
-
-            cova.classList.add('is-revealed');
-            cova.addEventListener('animationend', function() {
-                lineMask.classList.add('is-revealed');
-                multimediaMask.classList.add('is-revealed');
-            }, { once: true });
-        }
-
         function startIntroSequence() {
             const preloader = document.getElementById('preloader');
             const pageBg = document.querySelector('.page-bg');
@@ -619,11 +481,6 @@
             setTimeout(function() {
                 pageContent.classList.add('is-revealed');
                 updateThumbnailHalfGap();
-
-                pageContent.addEventListener('animationend', function(event) {
-                    if (event.animationName !== 'contentLensLoad') return;
-                    setTimeout(startLogoAnimation, 500);
-                }, { once: true });
             }, 1000);
         }
 
