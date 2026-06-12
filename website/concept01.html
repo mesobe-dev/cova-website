@@ -104,11 +104,16 @@
         }
 
         .logo-tagline {
+            position: relative;
             width: var(--logo-w);
-            margin-top: 2px;
+            height: calc(var(--logo-h) * 35.6 / 105.6);
         }
 
         .logo-line-mask {
+            position: absolute;
+            top: calc(var(--logo-h) * 27 / 105.6);
+            left: 0;
+            right: 0;
             overflow: hidden;
             opacity: 0;
             clip-path: inset(0 100% 0 0);
@@ -137,9 +142,12 @@
         }
 
         .logo-multimedia-mask {
+            position: absolute;
+            top: calc(var(--logo-h) * 16 / 105.6);
+            left: 0;
             overflow: hidden;
-            height: calc(var(--logo-h) * 28 / 105.6);
-            margin-top: 6px;
+            height: calc(var(--logo-h) * 18 / 105.6);
+            width: 100%;
         }
 
         .logo-multimedia-img {
@@ -147,7 +155,7 @@
             width: var(--logo-w);
             height: var(--logo-h);
             max-width: none;
-            margin-top: calc(var(--logo-h) * -77 / 105.6);
+            margin-top: calc(var(--logo-h) * -86 / 105.6);
             margin-left: -20px;
             opacity: 0;
         }
