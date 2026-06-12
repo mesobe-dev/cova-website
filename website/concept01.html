@@ -74,15 +74,31 @@
 
         .overlay-strip {
             --strip-padding: 130.5px;
+            position: relative;
+            isolation: isolate;
             margin-top: 90px;
             padding: var(--strip-padding) 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='1' fill='%2331262f'/%3E%3C/svg%3E");
-            background-size: 14px 14px;
-            background-position: 0 0;
             overflow: visible;
         }
 
+        .overlay-strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(to right, #95a9b2, #000, #2d2026);
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='1' fill='%23fff'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='1' fill='%23fff'/%3E%3C/svg%3E");
+            -webkit-mask-size: 14px 14px;
+            mask-size: 14px 14px;
+            -webkit-mask-repeat: repeat;
+            mask-repeat: repeat;
+        }
+
         .portfolio-grid {
+            position: relative;
+            z-index: 1;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
