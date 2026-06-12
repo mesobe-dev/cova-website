@@ -91,17 +91,17 @@
             to { opacity: 1; filter: blur(0); }
         }
 
-        .logo-tagline {
+        .logo-line {
             opacity: 0;
             transform: translateX(-20px);
             clip-path: inset(0 100% 0 0);
         }
 
-        .logo-tagline.is-revealed {
-            animation: logoTaglineIn 0.7s linear forwards;
+        .logo-line.is-revealed {
+            animation: logoLineIn 0.35s linear forwards;
         }
 
-        @keyframes logoTaglineIn {
+        @keyframes logoLineIn {
             from {
                 opacity: 0;
                 transform: translateX(-20px);
@@ -111,6 +111,26 @@
                 opacity: 1;
                 transform: translateX(0);
                 clip-path: inset(0 0 0 0);
+            }
+        }
+
+        .logo-multimedia {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .logo-multimedia.is-revealed {
+            animation: logoMultimediaIn 0.35s linear forwards;
+        }
+
+        @keyframes logoMultimediaIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -252,7 +272,8 @@
                         <path d="M60.8,52.3c-2.3,3.4-5.3,6.1-9,8.2-4.4,2.5-9.2,3.8-14.4,3.8-7.8,0-14.4-2.7-20-8.2-5.5-5.5-8.3-12.2-8.3-20.2s1.2-10.3,3.7-14.6c2.5-4.4,6-7.9,10.4-10.4s9.1-3.9,14.1-3.9,9.8,1.3,14.3,3.9c3.9,2.3,7.1,5.2,9.5,8.7l5.4-4.2c-1.2-1.7-2.5-3.3-4.1-4.8C55.7,3.9,47.2.5,37,.5s-12.1,1.6-17.5,4.7c-5.4,3.1-9.6,7.4-12.7,12.9-3.1,5.5-4.7,11.5-4.7,17.9,0,9.7,3.4,17.9,10.3,24.7,6.8,6.8,15.2,10.2,25.2,10.2s18.1-3.4,25-10.2c1.3-1.4,2.5-2.8,3.6-4.2l-5.4-4Z"/>
                     </g>
                     <g class="logo-tagline" fill="#fff">
-                        <path d="M5.8,97.5v-1h226.9v1H5.8Z"/>
+                        <path class="logo-line" d="M5.8,97.5v-1h226.9v1H5.8Z"/>
+                        <g class="logo-multimedia">
                         <path d="M249.6,91.6h1.5v2c.5-.7,1-1.2,1.6-1.6.7-.4,1.5-.7,2.3-.7s1.1.1,1.6.3c.5.2.9.5,1.2.9.3.4.6.9.8,1.5.5-.9,1.1-1.6,1.8-2,.7-.5,1.5-.7,2.3-.7s1.5.2,2.1.6,1,.9,1.3,1.7c.3.7.4,1.8.4,3.2v6.2h-1.5v-6.2c0-1.2,0-2-.3-2.5s-.5-.8-.9-1.1c-.4-.3-.9-.4-1.5-.4s-1.3.2-1.9.6-1,1-1.3,1.7c-.3.7-.4,1.8-.4,3.5v4.4h-1.5v-5.8c0-1.4,0-2.3-.3-2.8s-.5-.9-.9-1.2c-.4-.3-.9-.4-1.5-.4s-1.3.2-1.9.6c-.6.4-1,1-1.3,1.6-.3.7-.4,1.7-.4,3.1v4.8h-1.5v-11.3Z"/>
                         <path d="M275.7,91.6h1.5v5.3c0,1.3,0,2.2.2,2.7.2.7.6,1.2,1.2,1.6.6.4,1.3.6,2.1.6s1.5-.2,2.1-.6c.6-.4,1-.9,1.2-1.5.1-.4.2-1.4.2-2.8v-5.3h1.5v5.5c0,1.6-.2,2.7-.5,3.5-.4.8-.9,1.4-1.6,1.9-.7.4-1.6.7-2.7.7s-2-.2-2.8-.7c-.7-.4-1.3-1.1-1.7-1.9-.4-.8-.5-2-.5-3.6v-5.4Z"/>
                         <path d="M295,87.2h1.5v15.7h-1.5v-15.7Z"/>
@@ -263,6 +284,7 @@
                         <path d="M388,87.2v15.7h-1.4v-1.9c-.6.7-1.3,1.3-2.1,1.7-.8.4-1.6.6-2.5.6-1.6,0-3-.6-4.1-1.7s-1.7-2.6-1.7-4.2.6-3,1.7-4.2c1.1-1.2,2.5-1.7,4.1-1.7s1.8.2,2.5.6c.8.4,1.4,1,2,1.8v-6.4h1.4ZM382.2,92.7c-.8,0-1.6.2-2.2.6-.7.4-1.2,1-1.6,1.7-.4.7-.6,1.5-.6,2.3s.2,1.6.6,2.3c.4.7,1,1.3,1.6,1.7.7.4,1.4.6,2.2.6s1.6-.2,2.3-.6,1.3-.9,1.6-1.6c.4-.7.6-1.5.6-2.3,0-1.3-.4-2.4-1.3-3.3-.9-.9-1.9-1.3-3.2-1.3Z"/>
                         <path d="M398.2,86.9c.3,0,.6.1.8.4.2.2.4.5.4.9s-.1.6-.4.8c-.2.2-.5.4-.8.4s-.6-.1-.8-.4c-.2-.2-.4-.5-.4-.8s.1-.6.4-.9c.2-.2.5-.4.8-.4ZM397.5,91.6h1.5v11.3h-1.5v-11.3Z"/>
                         <path d="M419.6,91.6v11.3h-1.4v-1.9c-.6.7-1.3,1.3-2.1,1.7-.8.4-1.6.6-2.5.6-1.6,0-3-.6-4.1-1.7s-1.7-2.6-1.7-4.2.6-3,1.7-4.2c1.1-1.2,2.5-1.7,4.1-1.7s1.8.2,2.5.6c.8.4,1.4,1,2,1.8v-2.1h1.4ZM413.8,92.7c-.8,0-1.6.2-2.2.6-.7.4-1.2,1-1.6,1.7-.4.7-.6,1.5-.6,2.3s.2,1.6.6,2.3c.4.7,1,1.3,1.6,1.7.7.4,1.4.6,2.2.6s1.6-.2,2.3-.6,1.3-.9,1.6-1.6c.4-.7.6-1.5.6-2.3,0-1.3-.4-2.4-1.3-3.3-.9-.9-1.9-1.3-3.2-1.3Z"/>
+                        </g>
                     </g>
                 </svg>
             </div>
@@ -541,12 +563,14 @@
 
         function startLogoAnimation() {
             const cova = document.querySelector('.logo-cova');
-            const tagline = document.querySelector('.logo-tagline');
-            if (!cova || !tagline) return;
+            const line = document.querySelector('.logo-line');
+            const multimedia = document.querySelector('.logo-multimedia');
+            if (!cova || !line || !multimedia) return;
 
             cova.classList.add('is-revealed');
             cova.addEventListener('animationend', function() {
-                tagline.classList.add('is-revealed');
+                line.classList.add('is-revealed');
+                multimedia.classList.add('is-revealed');
             }, { once: true });
         }
 
