@@ -135,6 +135,40 @@
             text-underline-offset: 6px;
         }
 
+        .capture-modes {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            padding: 0 20px;
+            transform: translateY(-22px);
+        }
+
+        .capture-modes button {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.22);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .capture-modes button:hover {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .capture-modes button.is-active {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
         .overlay-strip {
             --strip-padding: 78.5px;
             --caption-font-size: 10px;
@@ -175,16 +209,10 @@
             align-items: center;
             width: 100%;
             overflow: visible;
-            animation: setIn 0.35s ease;
         }
 
         .portfolio-set.is-active {
             display: flex;
-        }
-
-        @keyframes setIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 1100px) {
@@ -201,8 +229,81 @@
             position: relative;
             z-index: 1;
             overflow: visible;
-            transition: transform 0.15s ease;
+            transition: transform 0.15s ease, border-color 0.2s ease, border-width 0.2s ease, background-color 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            background-color: rgba(8, 10, 12, 0.42);
+        }
+
+        .portfolio-block.is-captured {
             border: 2px solid #000;
+            background-color: transparent;
+        }
+
+        .portfolio-block.is-capturing .portfolio-block-media {
+            opacity: 0;
+        }
+
+        .portfolio-block.is-capturing .portfolio-block-caption {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .portfolio-block.is-captured .portfolio-block-caption {
+            animation: captionCapture 0.32s ease 0.18s forwards;
+        }
+
+        @keyframes captionCapture {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Shutter: brief flash + scale lock */
+        .capture-mode-shutter .portfolio-block.is-captured .portfolio-block-media {
+            animation: mediaShutter 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes mediaShutter {
+            0% { opacity: 0; transform: scale(1.07); filter: brightness(2.2); }
+            18% { opacity: 1; transform: scale(1.02); filter: brightness(1.5); }
+            100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+        }
+
+        .capture-mode-shutter .portfolio-block.is-captured::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+            background: #fff;
+            animation: shutterFlash 0.38s ease forwards;
+        }
+
+        @keyframes shutterFlash {
+            0% { opacity: 0.72; }
+            100% { opacity: 0; }
+        }
+
+        /* Exposure: brightness hunt then lock */
+        .capture-mode-exposure .portfolio-block.is-captured .portfolio-block-media {
+            animation: mediaExposure 0.55s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+        }
+
+        @keyframes mediaExposure {
+            0% { opacity: 0; filter: brightness(3) contrast(0.75); transform: scale(1.01); }
+            35% { opacity: 0.85; filter: brightness(1.8) contrast(0.95); }
+            65% { opacity: 1; filter: brightness(0.92) contrast(1.05); }
+            100% { opacity: 1; filter: brightness(1) contrast(1); transform: scale(1); }
+        }
+
+        /* Snap: viewfinder crop closes in */
+        .capture-mode-snap .portfolio-block.is-captured .portfolio-block-media {
+            animation: mediaSnap 0.42s cubic-bezier(0.34, 1.12, 0.64, 1) forwards;
+        }
+
+        @keyframes mediaSnap {
+            0% { opacity: 0.35; clip-path: inset(46% 46% 46% 46%); transform: scale(1.03); filter: brightness(1.35); }
+            55% { opacity: 1; clip-path: inset(6% 6% 6% 6%); filter: brightness(1.1); }
+            100% { opacity: 1; clip-path: inset(0); transform: scale(1); filter: brightness(1); }
         }
 
         .portfolio-block::before {
@@ -232,6 +333,8 @@
             z-index: 1;
             background-size: cover;
             background-position: center;
+            opacity: 1;
+            will-change: opacity, transform, filter, clip-path;
         }
 
         .portfolio-block-caption {
@@ -373,11 +476,17 @@
                     <button type="button" data-set="print">print</button>
                 </nav>
 
+                <nav class="capture-modes" aria-label="Capture transition preview">
+                    <button type="button" class="is-active" data-capture="shutter">shutter</button>
+                    <button type="button" data-capture="exposure">exposure</button>
+                    <button type="button" data-capture="snap">snap</button>
+                </nav>
+
                 <div class="overlay-strip w-full">
-                    <div class="portfolio-grid">
+                    <div class="portfolio-grid capture-mode-shutter" id="portfolio-grid">
 
                         <div class="portfolio-set is-active" data-set="featured">
-                            <div onclick="showProjectModal(0)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(0)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -390,7 +499,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -403,7 +512,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -419,7 +528,7 @@
                         </div>
 
                         <div class="portfolio-set" data-set="aerial">
-                            <div onclick="showProjectModal(3)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(3)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/103/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -432,7 +541,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(4)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(4)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/105/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -445,7 +554,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(5)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(5)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -461,7 +570,7 @@
                         </div>
 
                         <div class="portfolio-set" data-set="digital">
-                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -474,7 +583,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(6)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(6)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/64/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -487,7 +596,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(7)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(7)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/180/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -503,7 +612,7 @@
                         </div>
 
                         <div class="portfolio-set" data-set="print">
-                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -516,7 +625,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(8)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(8)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/42/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -529,7 +638,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div onclick="showProjectModal(9)" class="portfolio-block group relative cursor-pointer border border-white/10">
+                            <div onclick="showProjectModal(9)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/225/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
                                 <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
@@ -829,6 +938,7 @@
                 siteLogo.classList.add('is-revealed');
                 pageContent.classList.add('is-revealed');
                 updateThumbnailHalfGap();
+                runCaptureSequence(document.querySelector('.portfolio-set.is-active'));
             }, 1000);
         }
 
@@ -849,16 +959,54 @@
             document.querySelector('.portfolio-grid').style.setProperty('--half-gap', gap > 0 ? `${gap / 2}px` : '0px');
         }
 
+        var captureStaggerMs = 130;
+
+        function runCaptureSequence(setEl) {
+            if (!setEl) return;
+
+            var blocks = setEl.querySelectorAll('.portfolio-block');
+            blocks.forEach(function(block) {
+                block.classList.remove('is-captured');
+                block.classList.add('is-capturing');
+            });
+
+            blocks.forEach(function(block, index) {
+                setTimeout(function() {
+                    block.classList.add('is-captured');
+                    block.classList.remove('is-capturing');
+                }, 70 + index * captureStaggerMs);
+            });
+        }
+
+        function switchPortfolioSet(setName) {
+            document.querySelectorAll('.filter-tabs button').forEach(function(btn) {
+                btn.classList.toggle('is-active', btn.dataset.set === setName);
+            });
+            document.querySelectorAll('.portfolio-set').forEach(function(group) {
+                group.classList.toggle('is-active', group.dataset.set === setName);
+            });
+
+            var activeSet = document.querySelector('.portfolio-set.is-active');
+            updateThumbnailHalfGap();
+            runCaptureSequence(activeSet);
+        }
+
         document.querySelectorAll('.filter-tabs button').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                var set = btn.dataset.set;
-                document.querySelectorAll('.filter-tabs button').forEach(function(b) {
+                switchPortfolioSet(btn.dataset.set);
+            });
+        });
+
+        document.querySelectorAll('.capture-modes button').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var mode = btn.dataset.capture;
+                var grid = document.getElementById('portfolio-grid');
+                grid.classList.remove('capture-mode-shutter', 'capture-mode-exposure', 'capture-mode-snap');
+                grid.classList.add('capture-mode-' + mode);
+                document.querySelectorAll('.capture-modes button').forEach(function(b) {
                     b.classList.toggle('is-active', b === btn);
                 });
-                document.querySelectorAll('.portfolio-set').forEach(function(group) {
-                    group.classList.toggle('is-active', group.dataset.set === set);
-                });
-                updateThumbnailHalfGap();
+                runCaptureSequence(document.querySelector('.portfolio-set.is-active'));
             });
         });
 
