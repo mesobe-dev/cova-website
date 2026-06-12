@@ -74,6 +74,7 @@
 
         .overlay-strip {
             --strip-padding: 130.5px;
+            --caption-font-size: 0.75rem;
             position: relative;
             margin-top: 90px;
             padding: var(--strip-padding) 0;
@@ -157,11 +158,11 @@
             transform: translateY(-100%);
             background: #000;
             color: #fff;
-            font-size: 0.5rem;
+            font-size: var(--caption-font-size);
             font-weight: 500;
             letter-spacing: 0.5px;
             line-height: 1.2;
-            padding: 3px 6px;
+            padding: 0.35em 0.65em;
             z-index: 3;
             white-space: nowrap;
             text-transform: uppercase;
@@ -193,15 +194,15 @@
         }
 
         .icon-legend {
-            position: fixed;
+            position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 50;
+            z-index: 2;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 12px 10px;
+            gap: 0.65em;
+            padding: 0.75em 0.65em;
             background: rgba(0, 0, 0, 0.88);
             border-right: 1px solid rgba(255, 255, 255, 0.12);
         }
@@ -209,17 +210,19 @@
         .icon-legend__item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 7.5px;
+            gap: 0.5em;
+            font-size: var(--caption-font-size);
+            font-weight: 500;
             letter-spacing: 0.5px;
+            line-height: 1.2;
             text-transform: uppercase;
             color: #fff;
             white-space: nowrap;
         }
 
         .icon-legend__icon {
-            width: 8.25px;
-            height: 8.25px;
+            width: var(--caption-font-size);
+            height: var(--caption-font-size);
             flex-shrink: 0;
             color: #fff;
         }
@@ -279,18 +282,6 @@
         
         <div id="page-content" class="page-content w-full">
 
-            <aside class="icon-legend" aria-label="Icon legend">
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-aerial"/></svg><span>AERIAL</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-cinematic"/></svg><span>CINEMATIC</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-property"/></svg><span>PROPERTY</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-uiux"/></svg><span>UI/UX</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-agent"/></svg><span>AGENT INTERFACES</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-prototyping"/></svg><span>PROTOTYPING</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-identity"/></svg><span>IDENTITY</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-collateral"/></svg><span>COLLATERAL</span></div>
-                <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-digital"/></svg><span>DIGITAL</span></div>
-            </aside>
-            
             <!-- Logo -->
             <div class="flex justify-center">
                 <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-[57.5px] md:h-[69px] w-auto">
@@ -299,6 +290,17 @@
             <nav class="site-tabs" aria-label="Sections"></nav>
 
             <div class="overlay-strip w-full">
+                <aside class="icon-legend" aria-label="Icon legend">
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-aerial"/></svg><span>AERIAL</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-cinematic"/></svg><span>CINEMATIC</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-property"/></svg><span>PROPERTY</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-uiux"/></svg><span>UI/UX</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-agent"/></svg><span>AGENT INTERFACES</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-prototyping"/></svg><span>PROTOTYPING</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-identity"/></svg><span>IDENTITY</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-collateral"/></svg><span>COLLATERAL</span></div>
+                    <div class="icon-legend__item"><svg class="icon-legend__icon" viewBox="0 0 12 12" aria-hidden="true"><use href="#icon-digital"/></svg><span>DIGITAL</span></div>
+                </aside>
                 <div class="portfolio-grid">
                         
                     <!-- Block 1 -->
