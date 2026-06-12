@@ -57,6 +57,7 @@
         .site-logo {
             display: flex;
             justify-content: center;
+            opacity: 0;
         }
 
         .site-logo__img {
@@ -64,6 +65,33 @@
             width: 418px;
             height: auto;
             max-width: 100%;
+        }
+
+        .site-logo.is-revealed {
+            animation: logoFadeIn 1s linear forwards;
+        }
+
+        @keyframes logoFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page-content {
+            opacity: 0;
+            filter: blur(8px) brightness(0.75);
+        }
+
+        .page-content.is-revealed {
+            animation: contentLensLoad 1s linear forwards;
+        }
+
+        .page-content.is-revealed.is-settled {
+            filter: none;
+        }
+
+        @keyframes contentLensLoad {
+            from { opacity: 0; filter: blur(8px) brightness(0.75); }
+            to { opacity: 1; filter: blur(0) brightness(1); }
         }
 
         .site-tabs {
@@ -525,11 +553,24 @@
         function startIntroSequence() {
             const preloader = document.getElementById('preloader');
             const pageBg = document.querySelector('.page-bg');
+            const siteLogo = document.getElementById('site-logo');
+            const pageContent = document.getElementById('page-content');
 
             document.body.classList.remove('is-loading');
             preloader.classList.add('is-hidden');
             pageBg.classList.add('is-visible');
-            updateThumbnailHalfGap();
+
+            pageContent.addEventListener('animationend', function(event) {
+                if (event.animationName === 'contentLensLoad') {
+                    pageContent.classList.add('is-settled');
+                }
+            }, { once: true });
+
+            setTimeout(function() {
+                siteLogo.classList.add('is-revealed');
+                pageContent.classList.add('is-revealed');
+                updateThumbnailHalfGap();
+            }, 1000);
         }
 
         Promise.all(PRELOAD_ASSETS.map(preloadAsset).concat([whenPageReady()]))
