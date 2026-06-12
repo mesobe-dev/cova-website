@@ -157,15 +157,22 @@
         .portfolio-block::before {
             content: '';
             position: absolute;
-            top: calc(-1 * var(--strip-padding, 130.5px));
-            bottom: calc(-1 * var(--strip-padding, 130.5px));
-            left: calc(var(--half-gap, 0px) * -1);
-            width: calc(100% + var(--half-gap, 0px) * 2);
-            background-color: #1a1a1a;
+            inset: calc(-1 * var(--strip-padding, 130.5px)) calc(-1 * var(--half-gap, 0px));
+            padding: var(--strip-padding, 130.5px) var(--half-gap, 0px);
+            box-sizing: border-box;
+            background-color: #2a2420;
             opacity: 0;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.25s ease;
             pointer-events: none;
-            z-index: 2;
+            z-index: 0;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
         }
 
         .portfolio-block-media {
@@ -232,7 +239,7 @@
         }
 
         .portfolio-block:hover::before {
-            opacity: 0.72;
+            opacity: 0.88;
         }
 
         .portfolio-block:nth-child(1):hover::before {
