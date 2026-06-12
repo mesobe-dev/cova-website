@@ -6,7 +6,7 @@
     <title>C·O·V·A • Multimedia — Portfolio Preview</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&amp;family=Inter:wght@300;400;500&amp;family=Italiana&amp;family=Marcellus&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
 
         body {
             font-family: 'Inter', system_ui, sans-serif;
@@ -121,14 +121,19 @@
             background: none;
             border: none;
             color: rgba(255, 255, 255, 0.35);
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: none;
             cursor: pointer;
             padding: 0;
+            line-height: 1;
             transition: color 0.2s ease;
         }
+
+        .filter-tab--cinzel { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.12em; }
+        .filter-tab--italiana { font-family: 'Italiana', serif; font-size: 15px; letter-spacing: 0.04em; }
+        .filter-tab--marcellus { font-family: 'Marcellus', serif; font-size: 13px; letter-spacing: 0.1em; }
 
         .filter-tabs button:hover {
             color: rgba(255, 255, 255, 0.7);
@@ -429,11 +434,10 @@
             <div id="page-content" class="page-content w-full">
             <div class="strip-block">
                 <div class="strip-nav-cluster">
-                    <nav class="filter-tabs" aria-label="Work categories">
-                        <button type="button" class="is-active" data-set="featured">featured</button>
-                        <button type="button" data-set="aerial">aerial</button>
-                        <button type="button" data-set="digital">digital</button>
-                        <button type="button" data-set="print">print</button>
+                    <nav class="filter-tabs" aria-label="Work sets">
+                        <button type="button" class="filter-tab--cinzel is-active" data-set="i" aria-label="Set I — Cinzel">I</button>
+                        <button type="button" class="filter-tab--italiana" data-set="ii" aria-label="Set II — Italiana">II</button>
+                        <button type="button" class="filter-tab--marcellus" data-set="iii" aria-label="Set III — Marcellus">III</button>
                     </nav>
 
                 </div>
@@ -441,7 +445,7 @@
                 <div class="overlay-strip w-full">
                     <div class="portfolio-grid" id="portfolio-grid">
 
-                        <div class="portfolio-set is-active" data-set="featured">
+                        <div class="portfolio-set is-active" data-set="i">
                             <div onclick="showProjectModal(0)" class="portfolio-block group relative cursor-pointer is-captured">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/1018/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
@@ -483,7 +487,7 @@
                             </div>
                         </div>
 
-                        <div class="portfolio-set" data-set="aerial">
+                        <div class="portfolio-set" data-set="ii">
                             <div onclick="showProjectModal(3)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/103/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
@@ -525,7 +529,7 @@
                             </div>
                         </div>
 
-                        <div class="portfolio-set" data-set="digital">
+                        <div class="portfolio-set" data-set="iii">
                             <div onclick="showProjectModal(1)" class="portfolio-block group relative cursor-pointer is-capturing">
                                 <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/160/800/600')"></div>
                                 <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
@@ -562,48 +566,6 @@
                                         <span class="portfolio-block-tag">FIGMA</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
                                         <span class="portfolio-block-tag">COMPONENTS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
                                         <span class="portfolio-block-tag">DOCS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-set" data-set="print">
-                            <div onclick="showProjectModal(2)" class="portfolio-block group relative cursor-pointer is-capturing">
-                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
-                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
-                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
-                                <div class="portfolio-block-caption">
-                                    <div class="portfolio-block-title">studio identity</div>
-                                    <div class="portfolio-block-tags">
-                                        <span class="portfolio-block-tag">LOGO</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                        <span class="portfolio-block-tag">STATIONERY</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                        <span class="portfolio-block-tag">SIGNAGE</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div onclick="showProjectModal(8)" class="portfolio-block group relative cursor-pointer is-capturing">
-                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/42/800/600')"></div>
-                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
-                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
-                                <div class="portfolio-block-caption">
-                                    <div class="portfolio-block-title">annual report</div>
-                                    <div class="portfolio-block-tags">
-                                        <span class="portfolio-block-tag">LAYOUT</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                        <span class="portfolio-block-tag">INFOGRAPHICS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                        <span class="portfolio-block-tag">PRINT</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div onclick="showProjectModal(9)" class="portfolio-block group relative cursor-pointer is-capturing">
-                                <div class="portfolio-block-media" style="background-image: url('https://picsum.photos/id/225/800/600')"></div>
-                                <div class="corner-bracket corner-bracket-tl"></div><div class="corner-bracket corner-bracket-tr"></div>
-                                <div class="corner-bracket corner-bracket-bl"></div><div class="corner-bracket corner-bracket-br"></div>
-                                <div class="portfolio-block-caption">
-                                    <div class="portfolio-block-title">packaging line</div>
-                                    <div class="portfolio-block-tags">
-                                        <span class="portfolio-block-tag">DIELINE</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                        <span class="portfolio-block-tag">PROOFS</span><span class="portfolio-block-tag-sep" aria-hidden="true">·</span>
-                                        <span class="portfolio-block-tag">RETAIL</span>
                                     </div>
                                 </div>
                             </div>
