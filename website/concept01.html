@@ -74,31 +74,15 @@
 
         .overlay-strip {
             --strip-padding: 130.5px;
-            position: relative;
-            isolation: isolate;
             margin-top: 90px;
             padding: var(--strip-padding) 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='1' fill='%2331262f'/%3E%3C/svg%3E");
+            background-size: 14px 14px;
+            background-position: 0 0;
             overflow: visible;
         }
 
-        .overlay-strip::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background-image: linear-gradient(to right, #95a9b2, #000, #31262f);
-            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Ccircle cx='5' cy='5' r='1' fill='%23fff'/%3E%3C/svg%3E");
-            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Ccircle cx='5' cy='5' r='1' fill='%23fff'/%3E%3C/svg%3E");
-            -webkit-mask-size: 10px 10px;
-            mask-size: 10px 10px;
-            -webkit-mask-repeat: repeat;
-            mask-repeat: repeat;
-        }
-
         .portfolio-grid {
-            position: relative;
-            z-index: 1;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -194,9 +178,10 @@
     <div class="page-bg min-h-screen w-full flex items-center justify-center">
         
         <div id="page-content" class="page-content w-full">
-
+            
+            <!-- Logo -->
             <div class="flex justify-center">
-                <img src="https://www.cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-[57.5px] md:h-[69px] w-auto">
+                <img src="https://cova.ca/images/cova-logo.svg" alt="C·O·V·A Multimedia" class="h-[57.5px] md:h-[69px] w-auto">
             </div>
 
             <nav class="site-tabs" aria-label="Sections"></nav>
@@ -443,7 +428,7 @@
         const PRELOAD_ASSETS = [
             'https://www.cova.ca/images/pre-loaders/64/Preloader_8.gif',
             'https://cova.ca/images/concept_bg.jpg',
-            'https://www.cova.ca/images/cova-logo.svg',
+            'https://cova.ca/images/cova-logo.svg',
             'https://picsum.photos/id/1018/800/600',
             'https://picsum.photos/id/160/800/600',
             'https://picsum.photos/id/201/800/600'
