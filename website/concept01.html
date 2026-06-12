@@ -114,6 +114,9 @@
         }
 
         .portfolio-block {
+            --chevron-size: 18px;
+            --chevron-offset: 9px;
+            --chevron-caption-gap: 15px;
             width: 324px;
             height: 324px;
             flex: 0 0 324px;
@@ -149,8 +152,8 @@
 
         .portfolio-block-title {
             position: absolute;
-            top: 0;
-            left: 0;
+            left: calc(-1 * var(--chevron-offset));
+            top: calc(-1 * var(--chevron-offset) - var(--chevron-caption-gap));
             transform: translateY(-100%);
             background: #000;
             color: #fff;
@@ -165,8 +168,8 @@
 
         .portfolio-block-tags {
             position: absolute;
-            bottom: 0;
-            right: 0;
+            right: calc(-1 * var(--chevron-offset));
+            bottom: calc(var(--chevron-offset) + var(--chevron-caption-gap));
             display: flex;
             align-items: center;
             gap: 6px;
