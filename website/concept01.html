@@ -104,16 +104,16 @@
         }
 
         .logo-tagline {
-            position: relative;
+            display: flex;
+            align-items: center;
             width: var(--logo-w);
             height: calc(var(--logo-h) * 35.6 / 105.6);
+            padding-left: calc(var(--logo-w) * 5.8 / 421.7);
+            gap: calc(var(--logo-w) * 16.9 / 421.7);
         }
 
         .logo-line-mask {
-            position: absolute;
-            top: calc(var(--logo-h) * 27 / 105.6);
-            left: 0;
-            right: 0;
+            flex: 0 0 calc(var(--logo-w) * 226.9 / 421.7);
             overflow: hidden;
             opacity: 0;
             clip-path: inset(0 100% 0 0);
@@ -142,21 +142,20 @@
         }
 
         .logo-multimedia-mask {
-            position: absolute;
-            top: calc(var(--logo-h) * 16 / 105.6);
-            left: 0;
+            position: relative;
+            flex: 1 1 auto;
             overflow: hidden;
             height: calc(var(--logo-h) * 18 / 105.6);
-            width: 100%;
+            min-width: 0;
         }
 
         .logo-multimedia-img {
-            display: block;
+            position: absolute;
+            top: calc(var(--logo-h) * -86 / 105.6);
+            left: calc(var(--logo-w) * -249.6 / 421.7);
             width: var(--logo-w);
             height: var(--logo-h);
             max-width: none;
-            margin-top: calc(var(--logo-h) * -86 / 105.6);
-            margin-left: -20px;
             opacity: 0;
         }
 
@@ -167,11 +166,11 @@
         @keyframes logoMultimediaIn {
             from {
                 opacity: 0;
-                margin-left: -20px;
+                left: calc(var(--logo-w) * -249.6 / 421.7 - 20px);
             }
             to {
                 opacity: 1;
-                margin-left: 0;
+                left: calc(var(--logo-w) * -249.6 / 421.7);
             }
         }
 
